@@ -1,0 +1,45 @@
+/* colours: #9D9DA8 = orange; #3C3C45 = dark violet; #438336 = dark green; */
+
+body { padding-top: 20px;padding-bottom: 10px;}
+
+.btn-outline{color:#9D9DA8;background-color:transparent;border-color:#9D9DA8}
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active{color:#fff;background-color:#9D9DA8;border-color:#9D9DA8}
+.btn-outline-inverse{color:#fff;background-color:transparent;border-color:#fff}
+.btn-outline-inverse:hover,
+.btn-outline-inverse:focus,
+.btn-outline-inverse:active{color:#9D9DA8;text-shadow:none;background-color:#fff;border-color:#fff}
+
+.bs-docs-booticon{display:block;font-weight:500;color:#fff;text-align:center;cursor:default;background-color:#9D9DA8;border-radius:15%}
+.bs-docs-booticon-sm{width:30px;height:30px;font-size:20px;line-height:28px}
+.bs-docs-booticon-lg{width:144px;height:144px;font-size:108px;line-height:140px}
+.bs-docs-booticon-inverse{color:#9D9DA8;background-color:#fff}
+.bs-docs-booticon-outline{background-color:transparent;border:1px solid #fff}
+
+
+.bs-docs-nav .navbar-brand,.bs-docs-nav .navbar-nav>li>a{font-weight:600;color:#3C3C45}
+.bs-docs-nav .navbar-nav>li>a:hover,.bs-docs-nav .navbar-nav>.active>a,
+.bs-docs-nav .navbar-nav>.active>a:hover{color:#9D9DA8;background-color:#fff}
+.bs-docs-nav .navbar-toggle .icon-bar{background-color:#3C3C45}
+.bs-docs-nav .navbar-header .navbar-toggle{border-color:#fff}.bs-docs-nav .navbar-header .navbar-toggle:hover,
+.bs-docs-nav .navbar-header .navbar-toggle:focus{background-color:#f9f9f9;border-color:#fff}
+
+.navbar { margin-bottom: 10px;}
+.bs-docs-masthead { background: #9D9DA8;}
+.list-group {color:#3C3C45;}
+.list-description {font-size:14px;}
+
+.bs-docs-header {background: #9D9DA8; color: #FFFFFF;}
+.bs-docs-footer{padding-top:40px;padding-bottom:40px;margin-top:100px;color:#cccccc;text-align:center;border-top:1px solid #e5e5e5; background-color:#3C3C45;}
+.bs-docs-footer-links{padding-left:0;margin-top:20px;color:#cccccc}.bs-docs-footer-links li{display:inline;padding:0 2px}
+.bs-docs-footer-links li:first-child{padding-left:0}@media (min-width:768px){.bs-docs-footer p{margin-bottom:0}}
+.bs-docs-footer-links a {color:#cccccc}
+.bs-docs-footer-contact-a {color:#cccccc}
+/* voilet: background: #3C3C45; */
+.bs-docs-footer-copyright {background: #3C3C45; color:#cccccc; padding-top: 10px;padding-bottom: 30px;text-align:center;}
+
+/* Custom Style Definitions */
+.download_svg {visibility:hidden;display: none;}
+
+}

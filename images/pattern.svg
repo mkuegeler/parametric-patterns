@@ -1,0 +1,29 @@
+<svg name="var3" xmlns="http://www.w3.org/2000/svg" xlinkNS="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" width="100%" height="100%" viewBox="0 0 1600 900" style="background-color:#cccccc;" scale="2" boxw="1600" boxh="900" id="id_0x605414">
+<defs name="definitions" id="id_0x181962">
+</defs>
+<g x="-12.5" y="-12.5" width="825" height="825" transform="translate(400,50)" id="id_0x966579">
+<rect x="-12.5" y="-12.5" width="825" height="825" rx="15" ry="15" style="fill:#00ffff;stroke:none" transform="translate(0,0)" id="id_0x582324">
+</rect>
+<g transform="translate(0,0)" id="id_0x671006">
+<line x1="0" y1="0" x2="0" y2="800" style="stroke:#000000;stroke-width:1px;" id="id_0x185886">
+</line>
+<line x1="800" y1="0" x2="800" y2="800" style="stroke:#000000;stroke-width:1px;" id="id_0x532439">
+</line>
+<line x1="0" y1="0" x2="800" y2="0" style="stroke:#000000;stroke-width:1px;" id="id_0x812428">
+</line>
+<line x1="0" y1="800" x2="800" y2="800" style="stroke:#000000;stroke-width:1px;" id="id_0x951612">
+</line>
+</g>
+<g transform="translate(0,0)" id="id_0x490187">
+<circle r="25" cx="0" cy="0" style="stroke:none;fill:#ff4400;stroke:#686855;stroke-width:2px;" id="id_0x013464">
+</circle>
+<circle r="25" cx="800" cy="0" style="stroke:none;fill:#ff4400;stroke:#686855;stroke-width:2px;" id="id_0x492512">
+</circle>
+<circle r="25" cx="0" cy="800" style="stroke:none;fill:#ff4400;stroke:#686855;stroke-width:2px;" id="id_0x900926">
+</circle>
+<circle r="25" cx="800" cy="800" style="stroke:none;fill:#ff4400;stroke:#686855;stroke-width:2px;" id="id_0x589410">
+</circle>
+</g>
+
+</g>
+</svg>
