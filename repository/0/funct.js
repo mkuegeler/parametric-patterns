@@ -1,264 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Create the object: AbstractGrid
-////////////////////////////////////////////////////////////////////////////////
-function createAbstractGrid (params) {
-
-	//params: x,y,height,width,AmountX,AmountY
-
-	var x = params.x;
-	var y = params.y;
-	var height = params.height;
-	var width = params.width;
-	var AmountX = params.AmountX;
-	var AmountY = params.AmountY;
-
-	var i,j;
-	var x1 = x;
-	var y1 = y;
-	var x2;
-	var y2;
-	var pm = 0;
-	var all = 0;
-	var offset = 0;
-	var border = 0;
-
-	var grid = new Array();
-
-  for (i=0;i <= (AmountX) ;i++) {
-
-	        pm = ((width/AmountX)*i);
-	        x1 = (x+pm);
-	        y1 = y;
-
-					x2 = x1;
-	        y2 = (y+height);
-
-					grid[all] = {x1: x1, y1: y1, x2: x2, y2: y2};
-	        all++;
-
-   }
-
-	 for (j=0;j <= (AmountY) ;j++) {
-
-         pm = ((height/AmountY)*j);
-				 x1 = x;
-				 y1 = (y+pm);
-
-				 x2 = (x+width);
-				 y2 = y1;
-
-		     grid[all] = {x1: x1, y1: y1, x2: x2, y2: y2};
-		     all++;
-
-	 }
-
-return grid;
-
-}
-///////////////////////////////////////////////////////////////////////////////
-//Create the object: Grid
-///////////////////////////////////////////////////////////////////////////////
-
-function createGrid (params) {
-
-
-	  var el = params.el;
-		var layer = params.layer;
-		var transform = params.transform;
-		var x = params.x;
-  	var y = params.y;
-		var height = params.height;
-		var width = params.width;
-		var AmountX = params.AmountX;
-		var AmountY = params.AmountY;
-		var style = params.style;
-
-
-
-		params = {x:x,y:y,height:height,width:width,AmountX:AmountX,AmountY:AmountY};
-	  var AbstractGrid =createAbstractGrid(params);
-
-
-		var grid = el.g({layer:layer, transform:transform});
-
-
-    for (i=0; i<AbstractGrid.length;i++) {
-
-        params = {layer: grid.id, x1 : AbstractGrid[i].x1, y1: AbstractGrid[i].y1, x2: AbstractGrid[i].x2, y2:AbstractGrid[i].y2, style: style};
-        el.line(params);
-
-	}
-
-    return grid;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-//creates a list of abstract grid points (horizontal and vertical)
-//returns a hash array with two coordinates
-
-function createAbstractGridNodes (params) {
-
-	 /////////////////////////////////
-
-	 var x = params.x;
- 	 var y = params.y;
- 	 var height = params.height;
- 	 var width = params.width;
- 	 var AmountX = params.AmountX;
- 	 var AmountY = params.AmountY;
-
-	 /////////////////////////////////
-
-
-
-		var i,j;
-    var x1 = x;
-    var y1 = y;
-    var pm = 0;
-    var all = 0;
-    var offset = 0;
-    var border = 0;
-
-		var grid = new Array();
-
-for (j=offset;j <= (AmountY+border) ;j++) {
-
-    for (i=offset;i <= (AmountX+border) ;i++) {
-
-        pm = ((width/AmountX)*i);
-        x1 = (x+pm);
-        y1 = (y+((height/AmountY)*j));
-
-        grid[all] = {x1: x1, y1: y1};
-        all++;
-
-     }
-
-}
-
-return grid;
-
-}
-////////////////////////////////////////////////////////////////////////////////
-function createGridNodes (params) {
-
-	var el = params.el;
-	var layer = params.layer;
-	var transform = params.transform;
-	var x = 0;
-	var y = 0;
-	var height = params.height;
-	var width = params.width;
-	var AmountX = params.AmountX;
-	var AmountY = params.AmountY;
-	var style = params.style;
-
-  var r = params.r;
-
-	params = {x:x,y:y,height:height,width:width,AmountX:AmountX,AmountY:AmountY};
-	var AbstractGridNodes =createAbstractGridNodes(params);
-
-	var gridNodes = el.g({layer:layer, transform:transform});
-
-
-	for (i=0; i<AbstractGridNodes.length;i++) {
-
-			params = {layer: gridNodes.id, r:r, cx : AbstractGridNodes[i].x1, cy: AbstractGridNodes[i].y1, style: style};
-			el.circle(params);
-
-	}
-
-	return gridNodes;
-
-
-}
-////////////////////////////////////////////////////////////////////////////////
-//creates a list of abstract grid points (horizontal and vertical)
-//returns a hash array with two coordinates
-
-function createAbstractGridPanels (params) {
-
-	 /////////////////////////////////
-	 var x = params.x;
- 	 var y = params.y;
- 	 var height = params.height;
- 	 var width = params.width;
- 	 var AmountX = params.AmountX;
- 	 var AmountY = params.AmountY;
-
-	 /////////////////////////////////
-
-
-
-	var i,j;
-    var x1 = x;
-    var y1 = y;
-    var pm = 0;
-    var all = 0;
-
-		var grid = new Array();
-
-
-for (j=0;j < (AmountY) ;j++) {
-
-    for (i=0;i < (AmountX) ;i++) {
-
-        pm = ((width/AmountX)*i);
-
-        x1 = (x+pm);
-        y1 = (y+((height/AmountY)*j));
-
-        grid[all] = {x1: x1, y1: y1};
-        all++;
-
-     }
-
-}
-
-return grid;
-
-}
-////////////////////////////////////////////////////////////////////////////////
-function createGridPanels (params) {
-
-	var el = params.el;
-	var layer = params.layer;
-	var transform = params.transform;
-
-	var x = params.x;
-	var y = params.y;
-    
-	var rx = params.rx;
-	var ry = params.ry;
-	var height = params.height;
-	var width = params.width;
-	var AmountX = params.AmountX;
-	var AmountY = params.AmountY;
-	var style = params.style;
-    
-    var offset = params.offset;
-
-    var w = (width/AmountX);
-	var h = (height/AmountY);
-    
-    w = (w-offset);
-    h = (h-offset);
-
-	params = {x:x,y:y,height:height,width:width,AmountX:AmountX,AmountY:AmountY};
-
-	var AbstractGridPanels =createAbstractGridPanels(params);
-
-	var GridPanels = el.g({layer:layer, transform:transform});
-	
-    
-    for (i=0; i<AbstractGridPanels.length;i++) {
-        params = {layer: GridPanels.id, x : (AbstractGridPanels[i].x1+(offset/2)), y: (AbstractGridPanels[i].y1+(offset/2)), width:w, height:h, rx:rx, ry:ry, style: style};
-        el.rect(params);
-    }
-
-	return GridPanels;
-
-}
+// helper functions
 ////////////////////////////////////////////////////////////////////////////////
 // get position of canvas
 // params = {boxw:boxw, width:width, boxh:boxh, height:height};
@@ -266,6 +7,8 @@ function position (params) {
 	return {x:((params.boxw/2)-(params.width/2)), y:((params.boxh/2)-(params.height/2))};
 }
 ////////////////////////////////////////////////////////////////////////////////
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // main functions
 function slide (params) {
@@ -280,7 +23,7 @@ function slide (params) {
 
   // validate default parameters
   var _params = {};
-  for (e in params.slide) {
+  for (var e in params.slide) {
     // console.log(e+":"+params[e]);
     _params[e] = params.slide[e];
 
@@ -305,7 +48,7 @@ function defs (params) {
 
   // validate default parameters
   var _params = {};
-  for (e in params.defs) {
+  for (var e in params.defs) {
     // console.log(e+":"+params[e]);
     _params[e] = params.defs[e];
 
@@ -358,17 +101,48 @@ function container (params) {
 function rect(params) {	
   
   var el = params.rect.el;
+	delete params.rect.el;
+
   var layer = params.rect.layer;
-		  
-  var rect = el.rect({layer: layer.find(function(layer) {return layer.name === "container"; }).id});
+	delete params.rect.layer;
+	
+	var _params = params.rect;
+	_params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;
+	
+	// center element
+	var factor = {x:((params.container.width/2)-(_params.width/2)), y:((params.container.height/2)-(_params.height/2))};
+	_params.transform = "translate("+factor.x+","+factor.y+")";
+	
+	var rect = el.rect(_params);
   
   return {name:"rect", id:rect.id};
+}
+////////////////////////////////////////////////////////////////////////////////
+function circle(params) {	
+  
+  var el = params.circle.el;
+	delete params.circle.el;
+
+  var layer = params.circle.layer;
+	delete params.circle.layer;
+	
+	var _params = params.circle;
+	_params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;
+	
+	// center element
+	var factor = {x:(params.container.width/2), y:(params.container.height/2)};
+	_params.transform = "translate("+factor.x+","+factor.y+")";
+	
+	var rect = el.circle(_params);
+  
+  return {name:"circle", id:circle.id};
 }
 ////////////////////////////////////////////////////////////////////////////////
 define({
 slide: function (params) { return slide(params); },
 defs: function (params) { return defs(params); },
 container: function (params) { return container(params); },
-rect: function (params) { return rect (params); }
+rect: function (params) { return rect (params); },
+circle: function (params) { return circle (params); }	
 // EOF
 });

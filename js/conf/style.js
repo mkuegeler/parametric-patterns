@@ -1,34 +1,9 @@
-// default composition
-
-function createRow (amount, offset) {
-	var x = 0; var y = 0;
-	var rowArray = [];
-
-	for (i=0; i<amount; i++) { rowArray.push({x:x,y:0}); x = (x+offset);   }
-
-	return rowArray;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-function createCol (amount, offset) {
-	var x = 0; var y = 0;
-	var rowArray = [];
-
-	for (i=0; i<amount; i++) { rowArray.push({x:0,y:y}); y = (y+offset);   }
-
-	return rowArray;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-
-// Style definitions for svg elements.
-
+// Style definitions for svg elements
+///////////////////////////////////////////////////////////////////////////
+// global values
 var root_name = "embedded_svg";
-
 var default_style = "fill:#cccccc;stroke:#999999;stroke-width:0.10px;";
-
+///////////////////////////////////////////////////////////////////////////
 define({
 
 // the parent element of the svg node
@@ -85,18 +60,7 @@ set: { attributeType:"CSS", attributeName:"fill", from:"#ff0000", to:"#0000ff", 
 
 animateMotion: { path: "M 0,0 A1,1 0 1,1 4,0", dur:2, repeatCount: 4},
 
-///////////////////////////////////////////////////////////////////////////
-// layout and composition utility functions
-row: function (am,of) { return createRow(am,of).map(function (e) { return {transform: "translate("+e.x+","+e.y+")"};        }); },
-col: function (am,of) { return createCol(am,of).map(function (e) { return {transform: "translate("+e.x+","+e.y+")"};        }); },
-///////////////////////////////////////////////////////////////////////////
-// custom blocks
-///////////////////////////////////////////////////////////////////////////
-// matrix
-matrix : {matrix: [[0,1]], factor:4, r:1, x:1, y:1, rx:0, ry: 0, xn: 2, yn: 2, radius_offset: 0.1, n_style:"fill:#fffccc;stroke:#999999;stroke-width:0.055px;", b_style:"stroke:#999999;stroke-width:0.01px;"},
-///////////////////////////////////////////////////////////////////////////
-// node
-node: {data:"node"},
+
 ///////////////////////////////////////////////////////////////////////////
 
 // EOF

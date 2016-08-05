@@ -1,0 +1,6 @@
+# git commits
+
+## 05.08.2016
+git add * 
+git commit -a -m "Core elements (rectangle and circle) in repository 0 added." 
+git push origin master 
