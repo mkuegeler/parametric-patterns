@@ -138,11 +138,32 @@ function circle(params) {
   return {name:"circle", id:circle.id};
 }
 ////////////////////////////////////////////////////////////////////////////////
+function line(params) {	
+  
+  var el = params.line.el;
+	delete params.line.el;
+
+  var layer = params.line.layer;
+	delete params.line.layer;
+	
+	var _params = params.line;
+	_params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;
+	
+	// center element
+	var factor = {x:((params.container.width/2)-(_params.x2/2)), y:(params.container.height/2)};
+	_params.transform = "translate("+factor.x+","+factor.y+")";
+	
+	var line = el.line(_params);
+  
+  return {name:"line", id:line.id};
+}
+////////////////////////////////////////////////////////////////////////////////
 define({
 slide: function (params) { return slide(params); },
 defs: function (params) { return defs(params); },
 container: function (params) { return container(params); },
 rect: function (params) { return rect (params); },
-circle: function (params) { return circle (params); }	
+circle: function (params) { return circle (params); },
+line: function (params) { return line (params); }		
 // EOF
 });
