@@ -158,12 +158,34 @@ function line(params) {
   return {name:"line", id:line.id};
 }
 ////////////////////////////////////////////////////////////////////////////////
+function polygon(params) {	
+  
+  var el = params.polygon.el;
+	delete params.polygon.el;
+
+  var layer = params.polygon.layer;
+	delete params.polygon.layer;
+	
+	var _params = params.polygon;
+	_params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;
+	
+	// center element
+	var factor = {x:((params.container.width/2)-(_params.width/2)), y:((params.container.height/2)-(_params.height/2))};	
+	
+	_params.transform = "translate("+factor.x+","+factor.y+")";
+	
+	var polygon = el.polygon(_params);
+  
+  return {name:"polygon", id:polygon.id};
+}
+////////////////////////////////////////////////////////////////////////////////
 define({
 slide: function (params) { return slide(params); },
 defs: function (params) { return defs(params); },
 container: function (params) { return container(params); },
 rect: function (params) { return rect (params); },
 circle: function (params) { return circle (params); },
-line: function (params) { return line (params); }		
+line: function (params) { return line (params); },
+polygon: function (params) { return polygon (params); }			
 // EOF
 });
