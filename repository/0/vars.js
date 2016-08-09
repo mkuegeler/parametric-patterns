@@ -141,7 +141,79 @@ variants: [
     height: 400
   }
   
-} /// var4 end     
+}, /// var4 end   
+
+{  /// var5 start
+  slide: {
+    name: "path element",
+    width:"100%",
+    height:"100%",
+    viewBox: "0 0 1600 900",
+    style: "background-color:#cccccc;",
+    scale:2,
+    boxw: 1600,
+    boxh: 900
+  },
+  defs: {
+    name: "definitions"
+  },
+  container: {
+    style: "fill:none;stroke:#000000;stroke-width:1px; stroke-dasharray:5,5",
+    AmountX:8,
+    AmountY:8,
+    width:1500,
+    height:800,
+    x:0,
+    y:0,
+    rx:0,
+    ry:0,
+    offset:25
+  },
+  ////////////////////////////////////////////////////////////////////////////////
+  path: {
+    style: "fill:none;stroke:#999999;stroke-width:2px;",
+    d: "M 0,0 A300,300 0 100,100 300,0",
+    width: -600,
+    height: 100
+  }
+  
+}, /// var5 end  
+
+{  /// var6 start
+  slide: {
+    name: "path element",
+    width:"100%",
+    height:"100%",
+    viewBox: "0 0 1600 900",
+    style: "background-color:#cccccc;",
+    scale:2,
+    boxw: 1600,
+    boxh: 900
+  },
+  defs: {
+    name: "definitions"
+  },
+  container: {
+    style: "fill:none;stroke:#000000;stroke-width:1px; stroke-dasharray:5,5",
+    AmountX:8,
+    AmountY:8,
+    width:1500,
+    height:800,
+    x:0,
+    y:0,
+    rx:0,
+    ry:0,
+    offset:25
+  },
+  ////////////////////////////////////////////////////////////////////////////////
+  path: {
+    style: "fill:none;stroke:#999999;stroke-width:2px;",
+    d: "M0 0 L200 0 L200 200 L400 200 L400 400 L200 400 L200 600 L0 600 L0 400 L-200 400 L-200 200 L0 200 Z",    
+    width: 200,
+    height: 600
+  }
+  
+} /// var6 end     
 
 
 

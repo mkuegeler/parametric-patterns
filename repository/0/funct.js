@@ -179,6 +179,27 @@ function polygon(params) {
   return {name:"polygon", id:polygon.id};
 }
 ////////////////////////////////////////////////////////////////////////////////
+function path(params) {	
+  
+  var el = params.path.el;
+	delete params.path.el;
+
+  var layer = params.path.layer;
+	delete params.path.layer;
+	
+	var _params = params.path;
+	_params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;
+	
+	// center element
+	var factor = {x:((params.container.width/2)-(_params.width/2)), y:((params.container.height/2)-(_params.height/2))};	
+	
+	_params.transform = "translate("+factor.x+","+factor.y+")";
+	
+	var path = el.path(_params);
+  
+  return {name:"path", id:path.id};
+}
+////////////////////////////////////////////////////////////////////////////////
 define({
 slide: function (params) { return slide(params); },
 defs: function (params) { return defs(params); },
@@ -186,6 +207,7 @@ container: function (params) { return container(params); },
 rect: function (params) { return rect (params); },
 circle: function (params) { return circle (params); },
 line: function (params) { return line (params); },
-polygon: function (params) { return polygon (params); }			
+polygon: function (params) { return polygon (params); },
+path: function (params) { return path (params); }				
 // EOF
 });
