@@ -213,7 +213,112 @@ variants: [
     height: 600
   }
   
-} /// var6 end     
+}, /// var6 end  
+
+{  /// var7 start
+  slide: {
+    name: "ellipse element",
+    width:"100%",
+    height:"100%",
+    viewBox: "0 0 1600 900",
+    style: "background-color:#cccccc;",
+    scale:2,
+    boxw: 1600,
+    boxh: 900
+  },
+  defs: {
+    name: "definitions"
+  },
+  container: {
+    style: "fill:none;stroke:#000000;stroke-width:1px; stroke-dasharray:5,5",
+    AmountX:8,
+    AmountY:8,
+    width:1500,
+    height:800,
+    x:0,
+    y:0,
+    rx:0,
+    ry:0,
+    offset:25
+  },
+  ////////////////////////////////////////////////////////////////////////////////
+  ellipse: {
+    style: "fill:none;stroke:#999999;stroke-width:2px;", 
+    rx:400, 
+    ry:200
+    
+  }
+  
+}, /// var7 end 
+{  /// var8 start
+  slide: {
+    name: "polyline element",
+    width:"100%",
+    height:"100%",
+    viewBox: "0 0 1600 900",
+    style: "background-color:#cccccc;",
+    scale:2,
+    boxw: 1600,
+    boxh: 900
+  },
+  defs: {
+    name: "definitions"
+  },
+  container: {
+    style: "fill:none;stroke:#000000;stroke-width:1px; stroke-dasharray:5,5",
+    AmountX:8,
+    AmountY:8,
+    width:1500,
+    height:800,
+    x:0,
+    y:0,
+    rx:0,
+    ry:0,
+    offset:25
+  },
+  ////////////////////////////////////////////////////////////////////////////////
+  polyline: {
+    style: "fill:none;stroke:#999999;stroke-width:2px;", 
+    points: "0,0 200,0 200,200 400,200 400,400 200,400 200,600 0,600 0,400 -200,400 -200,200 0,200 0,0",
+    width: 200,
+    height: 600    
+  }
+  
+}, /// var8 end
+{  /// var9 start
+  slide: {
+    name: "text element",
+    width:"100%",
+    height:"100%",
+    viewBox: "0 0 1600 900",
+    style: "background-color:#cccccc;",
+    scale:2,
+    boxw: 1600,
+    boxh: 900
+  },
+  defs: {
+    name: "definitions"
+  },
+  container: {
+    style: "fill:none;stroke:#000000;stroke-width:1px; stroke-dasharray:5,5",
+    AmountX:8,
+    AmountY:8,
+    width:1500,
+    height:800,
+    x:0,
+    y:0,
+    rx:0,
+    ry:0,
+    offset:25
+  },
+  ////////////////////////////////////////////////////////////////////////////////
+  text: {
+    style: "stroke:none; fill:#000000;font-size: 140pt;",
+    data: "Medigeist Elements"
+  }
+  
+} /// var9 end   
+  
 
 
 

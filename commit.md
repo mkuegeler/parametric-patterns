@@ -24,3 +24,9 @@ git add *
 git commit -a -m "Core element (path) in repository 0 added." 
 git push origin master
 ```
+## 09.08.2016
+```
+git add * 
+git commit -a -m "Core element (text) in repository 0 started." 
+git push origin master
+```
