@@ -35,6 +35,8 @@ style: "background-color:#e8e8e8;"
 g: {},
 // placeholder for defs element
 defs: {},
+// placeholder for desc element
+desc: {},  
 // core svg elements
 circle: {r: 1, cx : 0, cy: 0, style: default_style},
 rect: {x : 0, y: 0, width:1, height:1, rx:0.1, ry:0.1, style: "fill:#cccccc;stroke:#999999;stroke-width:0.01px;"},

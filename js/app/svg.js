@@ -210,6 +210,17 @@ return this.geometry(params);
 };
 ///////////////////////////////////////////////////////////////////////////////
 // wrapper function 
+medigeist.prototype.desc = function (params) {
+
+// if no params: set an empty hash array
+if (!params) { params = {}; } 
+// add the element identifier (type) to params array
+params.type = this.getNameOfCall(arguments.callee);	
+return this.geometry(params);
+		 
+};
+///////////////////////////////////////////////////////////////////////////////
+// wrapper function 
 medigeist.prototype.g = function (params) {
 
 // if no params: set an empty hash array

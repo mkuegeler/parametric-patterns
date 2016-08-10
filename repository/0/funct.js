@@ -252,26 +252,57 @@ function text(params) {
 	
 	var _params = params.text;
 	_params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;
-	
-	var height = parseInt(_params.style.match("font-size:(.*)pt")[1]);
-	
-	// var nh = 100;
-	
 	// remove spaces in style string
 	_params.style = _params.style.replace(/\s/g, '');
 	
-	// var newstyle = style.replace("font-size:"+height+"pt", "font-size:"+nh+"pt"); 
+	//var d = el.desc({layer:_params.layer});
 	
-	// alert(newstyle);
+	// aproximate factor: font ratio (estimated). Depends on font and may needs to be customized
+	var ratio = 1.547; 
+	
+	var height = parseInt(_params.style.match("font-size:(.*)pt")[1]);
+	var length = _params.data.length;
+	var width = Math.round((length*(height/ratio)));
+	var newHeight = height;
+		
+	//alert("First:"+width);
+		
+	// check text length and if text too long for container, decrease font-size	
+	if (width>=params.container.width) {	
+		// alert("Text too long");	
+		while (width>params.container.width) {newHeight--;  width = Math.round((length*(newHeight/ratio)));   }
+		_params.style = _params.style.replace("font-size:"+height+"pt", "font-size:"+newHeight+"pt");
+	}
 	
 	// center element
-	var factor = {x:(params.container.width/4), y:((params.container.height/2)+(height/2))};
+	//var factor = {x:(params.container.width/4), y:((params.container.height/2)+(height/2))};
+	
+	var factor = {x:((params.container.width/2)-(width/2)), y:((params.container.height/2)+(height/2))};
 	
 	_params.transform = "translate("+factor.x+","+factor.y+")";
 	
+	//alert("Second:"+width);
+	
+	//var tmp = el.text(_params);
+	
+	//var length = Math.round(document.getElementById(tmp.id).getComputedTextLength()); 
+	
+	//var preview = document.getElementById(tmp.id);
+	//preview.outerHTML = "";
+	//delete preview;
+	
+	//factor = {x:((params.container.width/2)-(length/2)), y:((params.container.height/2)+(height/2))};
+	
+	// _params.transform = "translate("+factor.x+","+factor.y+")";
+	
 	var text = el.text(_params);
 	
-	var length = Math.round(document.getElementById(text.id).getComputedTextLength()); 
+	
+	// var parent = document.getElementById(text.id).parentNode.id;
+	// document.getElementById(parent).removeChild(text.id);
+	// alert(document.getElementById(parent));
+	
+	// alert(params.container.id);
 	
 	//var style = _params.style;
 	
@@ -284,34 +315,34 @@ function text(params) {
 	
 	
 	
-	if (length>=params.container.width) {
+// 	if (length>=params.container.width) {
 		
-										//alert("Text too long");	
+// 										//alert("Text too long");	
 		
- 		                var style;
+//  		                var style;
 		
- 		                var newHeight;
-		                var oldHeight = height;
+//  		                var newHeight;
+// 		                var oldHeight = height;
 		                
- 		                //for (var i=length; i--; i > params.container.width)  {
- 				 						//	    newHeight = (oldHeight-1);
-		                      newHeight = (oldHeight-10);
-											    style = _params.style.replace("font-size:"+oldHeight+"pt", "font-size:"+newHeight+"pt");
- 				 						//	    oldHeight = newHeight;
+//  		                //for (var i=length; i--; i > params.container.width)  {
+//  				 						//	    newHeight = (oldHeight-1);
+// 		                      newHeight = (oldHeight-10);
+// 											    style = _params.style.replace("font-size:"+oldHeight+"pt", "font-size:"+newHeight+"pt");
+//  				 						//	    oldHeight = newHeight;
 											
- 											    el.setAttribute(text.id,"style", style);
+//  											    el.setAttribute(text.id,"style", style);
 																						
- 											    length = Math.round(document.getElementById(text.id).getComputedTextLength()); 
+//  											    length = Math.round(document.getElementById(text.id).getComputedTextLength()); 
 											
 											   	
-											// alert(length);
+// 											// alert(length);
 											
- 										// }
-		// alert(length);
+//  										// }
+// 		// alert(length);
 		
-	}
+// 	}
 	
-	el.setAttribute(text.id,"transform", "translate("+((params.container.width/2)-(length/2))+","+factor.y+")");
+	//el.setAttribute(text.id,"transform", "translate("+((params.container.width/2)-(length/2))+","+factor.y+")");
 	
 		 
   return {name:"text", id:text.id};

@@ -30,3 +30,9 @@ git add *
 git commit -a -m "Core element (text) in repository 0 started." 
 git push origin master
 ```
+## 10.08.2016
+```
+git add * 
+git commit -a -m "Core element (text) in repository 0. Auto-scale started." 
+git push origin master
+```
