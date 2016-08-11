@@ -48,9 +48,11 @@ polyline: {points: "0,0 1,0 1,1 2,1 2,2 0,0", style:"fill:none;stroke:#999999;st
 text: {x : 0, y: 0, style: "stroke:none; fill:#ff0000;font-size: 1pt;", data: "sample text"},
 
 linearGradient: {},
-stop: {offset:"5%",  color: "#ff0000", opacity:"0.3"},
+// stop: {offset:"5%",  color: "#ff0000", opacity:"0.3"},
+stop: {offset:"5%",  color: "#ff0000"},
 
-radialGradient: {fx: "50%", fy:"50%", r:"95%", spreadMethod: "pad"},
+radialGradient: {},
+// radialGradient: {fx: "50%", fy:"50%", r:"95%", spreadMethod: "pad"},
 
 pattern: {x: 0, y:0, width:1, height:1, patternUnits: "userSpaceOnUse"},
 

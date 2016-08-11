@@ -36,3 +36,10 @@ git add *
 git commit -a -m "Core element (text) in repository 0. Auto-scale started." 
 git push origin master
 ```
+
+## 11.08.2016
+```
+git add * 
+git commit -a -m "Core elements (linearGradient and radialGradient) in repository 0 added." 
+git push origin master
+```

@@ -94,7 +94,7 @@ function container (params) {
 
   var frame = el.rect(_params);
 
-  return {name:"container", id:container.id};
+  return {name:"container", id:container.id, frame:frame.id};
 
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -133,7 +133,7 @@ function circle(params) {
 	var factor = {x:(params.container.width/2), y:(params.container.height/2)};
 	_params.transform = "translate("+factor.x+","+factor.y+")";
 	
-	var rect = el.circle(_params);
+	var circle = el.circle(_params);
   
   return {name:"circle", id:circle.id};
 }
@@ -348,6 +348,76 @@ function text(params) {
   return {name:"text", id:text.id};
 }
 ////////////////////////////////////////////////////////////////////////////////
+function linearGradient(params) {	
+  
+  var el = params.linearGradient.el;
+	delete params.linearGradient.el;
+
+  var layer = params.linearGradient.layer;
+	delete params.linearGradient.layer;
+	
+	var _params = params.linearGradient;
+	_params.layer = layer.find(function(layer) {return layer.name === "defs"; }).id;
+	
+	var linearGradient = el.linearGradient(_params);
+	
+	el.stop({layer:linearGradient.id});
+    el.stop({layer:linearGradient.id, offset:"85%", color: "#0000ff", opacity:"0.5"});  
+    
+    // Sample rectangle
+    
+    _params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;
+    
+    // center element
+	var factor = {x:((params.container.width/2)-(_params.width/2)), y:((params.container.height/2)-(_params.height/2))};
+	_params.transform = "translate("+factor.x+","+factor.y+")";
+	
+	_params.style = "fill:url(#"+linearGradient.id+")";
+	
+	var rect = el.rect(_params);
+  
+  return {name:"linearGradient", id:linearGradient.id};
+}
+////////////////////////////////////////////////////////////////////////////////
+function radialGradient(params) {	
+  
+  var el = params.radialGradient.el;
+	delete params.radialGradient.el;
+
+  var layer = params.radialGradient.layer;
+	delete params.radialGradient.layer;
+	
+	var _params = params.radialGradient;
+	_params.layer = layer.find(function(layer) {return layer.name === "defs"; }).id;
+	
+	
+	var radialGradient = el.radialGradient(_params);
+	
+	el.stop({layer:radialGradient.id, offset:"95%", color: "#0000cc" });  
+    el.stop({layer:radialGradient.id, offset:"5%", color: "#ff0000" });  
+    
+    // Sample circle
+    
+    _params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;
+    
+    
+    
+    _params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;
+	
+	// center element
+	var factor = {x:(params.container.width/2), y:(params.container.height/2)};
+	_params.transform = "translate("+factor.x+","+factor.y+")";
+	
+	_params.style = "fill:url(#"+radialGradient.id+")";
+	
+	_params.r = 350;
+	
+	
+    var circle = el.circle(_params);		
+  
+  return {name:"radialGradient", id:radialGradient.id};
+}
+////////////////////////////////////////////////////////////////////////////////
 define({
 slide: function (params) { return slide(params); },
 defs: function (params) { return defs(params); },
@@ -359,6 +429,8 @@ polygon: function (params) { return polygon (params); },
 path: function (params) { return path (params); },
 ellipse: function (params) { return ellipse (params); },
 polyline: function (params) { return polyline (params); },
-text: function (params) { return text (params); }		
+text: function (params) { return text (params); },
+linearGradient: function (params) { return linearGradient (params); },
+radialGradient: function (params) { return radialGradient (params); }	
 // EOF
 });
