@@ -380,9 +380,115 @@ variants: [
   },
   ////////////////////////////////////////////////////////////////////////////////
   radialGradient: {
-    
+     width:600, 
+    height:600      
   }  
-} /// var11 end
+}, /// var11 end
+{  /// var12 start
+  slide: {
+    name: "pattern element",
+    width:"100%",
+    height:"100%",
+    viewBox: "0 0 1600 900",
+    style: "background-color:#cccccc;",
+    scale:2,
+    boxw: 1600,
+    boxh: 900
+  },
+  defs: {
+    name: "definitions"
+  },
+  container: {
+    style: "fill:none;stroke:#000000;stroke-width:1px; stroke-dasharray:5,5",
+    AmountX:8,
+    AmountY:8,
+    width:1500,
+    height:800,
+    x:0,
+    y:0,
+    rx:0,
+    ry:0,
+    offset:25
+  },
+  ////////////////////////////////////////////////////////////////////////////////
+  pattern: {
+    x:10,
+    y:10,
+    width:20, 
+    height:20,
+    r:350
+  }  
+}, /// var12 end
+{  /// var13 start
+  slide: {
+    name: "animate element",
+    width:"100%",
+    height:"100%",
+    viewBox: "0 0 1600 900",
+    style: "background-color:#cccccc;",
+    scale:2,
+    boxw: 1600,
+    boxh: 900
+  },
+  defs: {
+    name: "definitions"
+  },
+  container: {
+    style: "fill:none;stroke:#000000;stroke-width:1px; stroke-dasharray:5,5",
+    AmountX:8,
+    AmountY:8,
+    width:1500,
+    height:800,
+    x:0,
+    y:0,
+    rx:0,
+    ry:0,
+    offset:25
+  },
+  ////////////////////////////////////////////////////////////////////////////////
+  animate: {
+    style: "fill:none;stroke:#999999;stroke-width:2px;",
+    repeatCount: 5,
+    dur: 1
+  }  
+}, /// var13 end
+{  /// var14 start
+  slide: {
+    name: "animateTransform element",
+    width:"100%",
+    height:"100%",
+    viewBox: "0 0 1600 900",
+    style: "background-color:#cccccc;",
+    scale:2,
+    boxw: 1600,
+    boxh: 900
+  },
+  defs: {
+    name: "definitions"
+  },
+  container: {
+    style: "fill:none;stroke:#000000;stroke-width:1px; stroke-dasharray:5,5",
+    AmountX:8,
+    AmountY:8,
+    width:1500,
+    height:800,
+    x:0,
+    y:0,
+    rx:0,
+    ry:0,
+    offset:25
+  },
+  ////////////////////////////////////////////////////////////////////////////////
+  animateTransform: {
+    style: "fill:none;stroke:#999999;stroke-width:2px;",
+    type: 'translate', 
+    from:'300,300', 
+    to:'600,600', 
+    begin: 1, 
+    dur:1, 
+    repeatCount: 2
+  }  
+} /// var14 end   
 
 ]
 // EOF

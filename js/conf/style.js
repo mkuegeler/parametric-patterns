@@ -65,8 +65,10 @@ animateColor: { attributeType: 'CSS', attributeName:"fill", from:"#ff0000", to:"
 set: { attributeType:"CSS", attributeName:"fill", from:"#ff0000", to:"#0000ff", dur:2, repeatCount: 2},
 
 animateMotion: { path: "M 0,0 A1,1 0 1,1 4,0", dur:2, repeatCount: 4},
-
-
+  
+// the mpath sub-element for the <animateMotion> element provides the ability to reference an external <path> element as the definition of a motion path.
+mpath: {}    
+ 
 ///////////////////////////////////////////////////////////////////////////
 
 // EOF

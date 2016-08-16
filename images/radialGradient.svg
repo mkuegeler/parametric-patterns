@@ -1,15 +1,16 @@
 <svg id="id_0x443066" boxh="900" boxw="1600" scale="2" style="background-color:#cccccc;" viewBox="0 0 1600 900" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" xlinkNS="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" name="radialGradient element">
 <defs id="id_0x555289" name="definitions">
- <pattern id="pattern1"
-           x="10" y="10" width="20" height="20"
-           patternUnits="userSpaceOnUse" >
-      <circle cx="10" cy="10" r="10" style="fill:none;stroke:#999999;stroke-width:1px;" />
-  </pattern>
+<radialGradient id="id_0x157199">
+<stop id="id_0x568145" stop-color="#ffffff" offset="10%">
+</stop>
+<stop id="id_0x860806" stop-color="#000000" offset="95%">
+</stop>
+</radialGradient>
 </defs>
 <g id="id_0x154665" transform="translate(50,50)" height="825" width="1525" y="-12.5" x="-12.5">
 <rect id="id_0x945192" transform="translate(0,0)" style="fill:none;stroke:#000000;stroke-width:1px; stroke-dasharray:5,5" ry="0" rx="0" height="825" width="1525" y="-12.5" x="-12.5">
 </rect>
-<circle r="350" style="fill:url(#pattern1)" transform="translate(750,400)" cy="0" cx="0" id="id_0x157199">
+<circle r="350" style="fill:url(#id_0x157199)" transform="translate(750,400)" cy="0" cx="0" id="id_0x157199">
 </circle>
 </g>
 </svg>

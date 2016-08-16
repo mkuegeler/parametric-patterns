@@ -43,3 +43,10 @@ git add *
 git commit -a -m "Core elements (linearGradient and radialGradient) in repository 0 added." 
 git push origin master
 ```
+
+## 16.08.2016
+```
+git add * 
+git commit -a -m "Core elements (pattern, animate, animateTransform) in repository 0 added." 
+git push origin master
+```

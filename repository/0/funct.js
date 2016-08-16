@@ -390,32 +390,106 @@ function radialGradient(params) {
 	var _params = params.radialGradient;
 	_params.layer = layer.find(function(layer) {return layer.name === "defs"; }).id;
 	
-	
 	var radialGradient = el.radialGradient(_params);
 	
-	el.stop({layer:radialGradient.id, offset:"95%", color: "#0000cc" });  
-    el.stop({layer:radialGradient.id, offset:"5%", color: "#ff0000" });  
+	el.stop({layer:radialGradient.id});
+    el.stop({layer:radialGradient.id, offset:"85%", color: "#0000ff", opacity:"0.5"});  
     
-    // Sample circle
-    
-    _params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;
-    
-    
+    // Sample rectangle
     
     _params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;
+    
+    // center element
+	var factor = {x:((params.container.width/2)-(_params.width/2)), y:((params.container.height/2)-(_params.height/2))};
+	_params.transform = "translate("+factor.x+","+factor.y+")";
+	
+	_params.style = "fill:url(#"+radialGradient.id+")";
+	
+	var rect = el.rect(_params);
+  
+  return {name:"radialGradient", id:radialGradient.id};
+}
+////////////////////////////////////////////////////////////////////////////////
+function pattern(params) {	
+  
+  var el = params.pattern.el;
+	delete params.pattern.el;
+
+  var layer = params.pattern.layer;
+	delete params.pattern.layer;
+	
+	var _params = params.pattern;
+	_params.layer = layer.find(function(layer) {return layer.name === "defs"; }).id;
+	
+	var pattern = el.pattern(_params);
+	
+	el.circle({layer: pattern.id, r: 10, cx : 10, cy: 10,  style: "fill:none;stroke:#999999;stroke-width:1px;"});
+  	
+	_params = {};
+	_params.r = params.pattern.r;
+	_params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;
 	
 	// center element
 	var factor = {x:(params.container.width/2), y:(params.container.height/2)};
 	_params.transform = "translate("+factor.x+","+factor.y+")";
 	
-	_params.style = "fill:url(#"+radialGradient.id+")";
+	_params.style = "fill:url(#"+pattern.id+")";
 	
-	_params.r = 350;
+	var circle = el.circle(_params);
 	
-	
-    var circle = el.circle(_params);		
   
-  return {name:"radialGradient", id:radialGradient.id};
+  return {name:"pattern", id:pattern.id};
+}
+////////////////////////////////////////////////////////////////////////////////
+function animate(params) {	
+  
+  var el = params.animate.el;
+	delete params.animate.el;
+
+  var layer = params.animate.layer;
+	delete params.animate.layer;
+	
+	var _params = params.animate;
+	_params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;	
+	
+	// center element
+	var factor = {x:(params.container.width/2), y:(params.container.height/2)};
+	_params.transform = "translate("+factor.x+","+factor.y+")";
+	
+	var animate_group = el.g({layer: _params.layer, transform: _params.transform});
+	
+	_params.layer = animate_group.id;
+	// delete _params.style;
+  el.circle({layer: animate_group.id, r:200, style:_params.style});
+  var animate = el.animate(_params);
+  
+  return {name:"animate", id:animate.id};
+}
+////////////////////////////////////////////////////////////////////////////////
+function animateTransform(params) {	
+  
+  var el = params.animateTransform.el;
+	delete params.animateTransform.el;
+
+  var layer = params.animateTransform.layer;
+	delete params.animateTransform.layer;
+	
+	var _params = params.animateTransform;
+	_params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;	
+	
+	// center element
+	var factor = {x:(params.container.width/2), y:(params.container.height/2)};
+	_params.transform = "translate("+factor.x+","+factor.y+")";
+	
+	var animateTransform_group = el.g({layer: _params.layer, transform: _params.transform});
+	
+	_params.layer = animateTransform_group.id;
+	// delete _params.style;
+  var animateTransform_circle = el.circle({layer: animateTransform_group.id, r:50, style:_params.style});
+  // var animateTransform = el.animateTransform(_params);
+	var animateTransform = el.animateTransform(_params);
+  
+  return {name:"animateTransform", id:animateTransform.id};
 }
 ////////////////////////////////////////////////////////////////////////////////
 define({
@@ -431,6 +505,9 @@ ellipse: function (params) { return ellipse (params); },
 polyline: function (params) { return polyline (params); },
 text: function (params) { return text (params); },
 linearGradient: function (params) { return linearGradient (params); },
-radialGradient: function (params) { return radialGradient (params); }	
+radialGradient: function (params) { return radialGradient (params); },
+pattern: function (params) { return pattern (params); },
+animate: function (params) { return animate (params); },
+animateTransform: function (params) { return animateTransform (params); }	
 // EOF
 });
