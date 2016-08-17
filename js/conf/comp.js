@@ -61,10 +61,10 @@ document.getElementById("data_placeholder").appendChild(dbPlaceholder);
 //////////////////////////////////////////////////////////////////////////////////////////////
 function summary_hbs (vars) {
 
-var template;
+var template ="";
 
 vars.variants.forEach( function(v) { 
-template += '<li class="list-group-item">Variant:<p class="list-description">'+v.slide.name+'</p></li>';
+template += '<li class="list-group-item">'+v.slide.name+'<p class="list-description">'+v.slide.description+'</p></li>';
 // alert(v.slide.name);
 }
 );

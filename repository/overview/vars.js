@@ -8,6 +8,7 @@ variants: [
 {  /// var1 start
   slide: {
     name: "rect element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -42,6 +43,7 @@ variants: [
 {  /// var2 start
   slide: {
     name: "circle element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -76,6 +78,7 @@ variants: [
 {  /// var3 start
   slide: {
     name: "line element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -110,6 +113,7 @@ variants: [
 {  /// var4 start
   slide: {
     name: "polygon element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -146,6 +150,7 @@ variants: [
 {  /// var5 start
   slide: {
     name: "path element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -182,6 +187,7 @@ variants: [
 {  /// var6 start
   slide: {
     name: "path element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -218,6 +224,7 @@ variants: [
 {  /// var7 start
   slide: {
     name: "ellipse element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -253,6 +260,7 @@ variants: [
 {  /// var8 start
   slide: {
     name: "polyline element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -288,6 +296,7 @@ variants: [
 {  /// var9 start
   slide: {
     name: "text element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -322,6 +331,7 @@ variants: [
 {  /// var10 start
   slide: {
     name: "linearGradient element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -355,6 +365,7 @@ variants: [
 {  /// var11 start
   slide: {
     name: "radialGradient element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -387,6 +398,7 @@ variants: [
 {  /// var12 start
   slide: {
     name: "pattern element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -422,6 +434,7 @@ variants: [
 {  /// var13 start
   slide: {
     name: "animate element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -455,6 +468,7 @@ variants: [
 {  /// var14 start
   slide: {
     name: "animateTransform element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -524,6 +538,7 @@ variants: [
 {  /// var16 start
   slide: {
     name: "animateMotion element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
