@@ -8,7 +8,7 @@ requirejs.config({
     //the paths config could be for a directory.
     paths: {
         app: '../app',
-		    repo: '../../repository/0'
+		    repo: '../../repository/overview'
     }
 });
 
@@ -16,25 +16,24 @@ requirejs.config({
 requirejs(['comp', 'style', 'repo/funct', 'repo/vars', 'app/svg'],
 function (comp,style,funct,vars) {
 
-style.assembler = function (params,el) {
+style.assembler = function (params,el) { // console.log(params.slide.name);
   var i = 0; var layer = [];
-  for (p in params) {
-       params[p].el = el; params[p].layer = layer; layer[i] = funct[p](params); i++;
+  for (var p in params) {
+       params[p].el = el; params[p].layer = layer; layer[i] = funct[p](params); i++; 
   } return el;
 }
 
-var library = [], canvas;
-vars.variants.forEach(function(v) {
+var library = [];
+vars.variants.forEach(function(v) { 
 
    library.push(
-     function (s) {
-               return s.assembler(v,new medigeist(s));
-           }
+     function (s) { 
+               return s.assembler(v,new medigeist(s)); 
+           } 
    );
 });
 
-
-comp.compose(library);
+comp.compose(library,vars);
 comp.session(library,style);
 
 

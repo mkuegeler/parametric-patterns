@@ -9,14 +9,12 @@ for (var i=0; i<library.length; i++) {
 
 		         if (style) {
 					        style.root = scheme.download_svg_id+v;
-									// style.src = scheme.download_svg_id+v;
-					        // style.display = "slide";
+								
 					        library[i](style).writeCode(scheme.embedded_svg_code+v);
 
-
 									style.root = scheme.embedded_svg_id+v;
-					        // style.display = "slide";
-		              library[i](style);
+					        
+		              library[i](style); 
 
 					  v++;
 		       }
@@ -26,12 +24,12 @@ for (var i=0; i<library.length; i++) {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-function compose (library) {
+function compose (library,vars) {
 
 var templates = [
-function () { return summary_hbs(); },
-function () { return canvas_hbs(); },
-function () { return scripts_hbs(); }
+function (v) { return summary_hbs(v); },
+function (v) { return canvas_hbs(v); },
+function (v) { return scripts_hbs(v); }
 ];
 
 var hb_template; var siteTemplate_name; var hb_template_value;
@@ -44,31 +42,11 @@ siteTemplate_name = "siteTemplate_0"+(i+1);
 
 hb_template.setAttribute("id", siteTemplate_name);
 
-hb_template_value = document.createTextNode(templates[i]());
+hb_template_value = document.createTextNode(templates[i](vars));
 hb_template.appendChild(hb_template_value);
 document.getElementById("tmpl_placeholder").appendChild(hb_template);
 
 }
-//var hb_template_01 = document.createElement("script");
-//hb_template_01.setAttribute("type", "text/x-handlebars-template");
-//hb_template_01.setAttribute("id", "siteTemplate_01");
-//var hb_template_value_01 = document.createTextNode(summary_hbs());
-//hb_template_01.appendChild(hb_template_value_01);
-//document.getElementById("tmpl_placeholder").appendChild(hb_template_01);
-
-//var hb_template_02 = document.createElement("script");
-//hb_template_02.setAttribute("type", "text/x-handlebars-template");
-//hb_template_02.setAttribute("id", "siteTemplate_02");
-//var hb_template_value_02 = document.createTextNode(canvas_hbs());
-//hb_template_02.appendChild(hb_template_value_02);
-//document.getElementById("tmpl_placeholder").appendChild(hb_template_02);
-
-//var hb_template_03 = document.createElement("script");
-//hb_template_03.setAttribute("type", "text/x-handlebars-template");
-//hb_template_03.setAttribute("id", "siteTemplate_03");
-//var hb_template_value_03 = document.createTextNode(scripts_hbs());
-//hb_template_03.appendChild(hb_template_value_03);
-//document.getElementById("tmpl_placeholder").appendChild(hb_template_03);
 
 var script = "data = {canvas: canvas("+library.length+")}; hbs_templates(data,"+templates.length+");";
 
@@ -81,14 +59,14 @@ document.getElementById("data_placeholder").appendChild(dbPlaceholder);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-function summary_hbs () {
+function summary_hbs (v) {
 
-var template = '{{#each canvas}}<li class="list-group-item">Chapter: {{this.chapter}}</li>{{/each}}';
+var template = '{{#each canvas}}<li class="list-group-item">Chapter: {{this.chapter}} <h5>'+v.variants[0].slide.name+'</h5></li>{{/each}}';
 
 return template;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
-function canvas_hbs () {
+function canvas_hbs (v) {
 
 var template =
 '{{#each canvas}}<div id="{{this.chapter_id}}"><div class="page-header"><h2>{{this.chapter}}</h2></div>' +
@@ -101,7 +79,7 @@ var template =
 return template;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
-function scripts_hbs () {
+function scripts_hbs (v) {
 
 var template =
 '{{#each canvas}} $("#{{this.full_screen_id}}").click(function () {'+
@@ -118,5 +96,5 @@ return template;
 //////////////////////////////////////////////////////////////////////////////////////////////
 define({
 session: function (l,s) { return session (l,s); },
-compose: function (s) { return compose (s); }
+compose: function (s,v) { return compose (s,v); }
 });
