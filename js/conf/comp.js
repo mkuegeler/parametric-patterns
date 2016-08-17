@@ -59,9 +59,17 @@ document.getElementById("data_placeholder").appendChild(dbPlaceholder);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-function summary_hbs (v) {
+function summary_hbs (vars) {
 
-var template = '{{#each canvas}}<li class="list-group-item">Chapter: {{this.chapter}} <h5>'+v.variants[0].slide.name+'</h5></li>{{/each}}';
+var template;
+
+vars.variants.forEach( function(v) { 
+template += '<li class="list-group-item">Variant:<p class="list-description">'+v.slide.name+'</p></li>';
+// alert(v.slide.name);
+}
+);
+
+// var template = '{{#each canvas}}<li class="list-group-item">Chapter: {{this.chapter}} <p class="list-description">'+v.variants[0].slide.name+'</p></li>{{/each}}';
 
 return template;
 }

@@ -57,3 +57,10 @@ git add *
 git commit -a -m "Core elements (set, animateMotion) in repository 0 added. Repository 0 renamed to overview" 
 git push origin master
 ```
+
+## 17.08.2016
+```
+git add * 
+git commit -a -m "function summary_hbs in comp.js customized." 
+git push origin master
+```
