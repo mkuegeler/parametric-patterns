@@ -393,7 +393,9 @@ function animate(params) {
 	
 	_params.layer = animate_group.id;
 	// delete _params.style;
-  el.circle({layer: animate_group.id, r:200, style:_params.style});
+  var circle = el.circle({layer: animate_group.id, r:200, style:_params.style});
+	
+	_params.begin = circle.id+".click";
   var animate = el.animate(_params);
   
   return {name:"animate", id:animate.id};
@@ -420,6 +422,11 @@ function animateTransform(params) {
 	// delete _params.style;
   var animateTransform_circle = el.circle({layer: animateTransform_group.id, r:50, style:_params.style});
   // var animateTransform = el.animateTransform(_params);
+	
+	_params.begin = animateTransform_circle.id+".click";
+	_params.from = factor.x+","+factor.y;
+	_params.to = (factor.x*1.5)+","+factor.y;
+	
 	var animateTransform = el.animateTransform(_params);
   
   return {name:"animateTransform", id:animateTransform.id};
@@ -448,6 +455,7 @@ function set(params) {
 	
   _params.layer = set_circle.id;
 	//delete _params.style;
+	_params.begin = set_circle.id+".click";
 	var set = el.set(_params);
   
   return {name:"set", id:set.id};
@@ -468,18 +476,25 @@ function animateMotion(params) {
 	_params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;	
 	
 	// center element
-	var factor = {x:(params.container.width/2), y:(params.container.height/2)};
+	//var factor = {x:(params.container.width/2), y:(params.container.height/2)};
+	//_params.transform = "translate("+factor.x+","+factor.y+")";
+	
+	
+	var factor = {x:((params.container.width/2)-(_params.width/2)), y:((params.container.height/2)-(_params.height/2))};	
+	
 	_params.transform = "translate("+factor.x+","+factor.y+")";
+	
+  var path = el.path({layer:_params.layer, d:_params.path, style: _params.path_style, transform:_params.transform });
 	
 	var animateMotion_group = el.g({layer: _params.layer, transform: _params.transform});
 	
 	_params.layer = animateMotion_group.id;
 	
-	
-	
-  var animateMotion_circle = el.circle({layer: animateMotion_group.id, r:50, style:style});
+	var animateMotion_circle = el.circle({layer: animateMotion_group.id, r:50, style:style});
 	
   _params.layer = animateMotion_circle.id;
+	
+	_params.begin = animateMotion_circle.id+".click";
 	
 	var animateMotion = el.animateMotion(_params);
   

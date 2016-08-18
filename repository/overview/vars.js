@@ -43,7 +43,7 @@ variants: [
 {  /// var2 start
   slide: {
     name: "circle element",
-    description: "Description of element",
+    description: "The circle is centered in cx , cy and has a radius of r. cx, cy and r are attributes of the <circle> element.",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -460,9 +460,9 @@ variants: [
   },
   ////////////////////////////////////////////////////////////////////////////////
   animate: {
-    style: "fill:none;stroke:#999999;stroke-width:2px;",
-    repeatCount: 5,
-    dur: 1
+    style: "fill:#e8e8e8;stroke:#999999;stroke-width:4px;",    
+    repeatCount: 2,
+    dur: 2
   }  
 }, /// var13 end
 {  /// var14 start
@@ -494,18 +494,16 @@ variants: [
   },
   ////////////////////////////////////////////////////////////////////////////////
   animateTransform: {
-    style: "fill:none;stroke:#999999;stroke-width:2px;",
-    type: 'translate', 
-    from:'300,300', 
-    to:'600,600', 
-    begin: 1, 
-    dur:1, 
-    repeatCount: 2
+    style: "fill:#e8e8e8;stroke:#999999;stroke-width:4px;",
+    type: 'translate',     
+    dur:2, 
+    repeatCount: 2    
   }  
 }, /// var14 end   
 {  /// var15 start
   slide: {
     name: "set element",
+    description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
@@ -531,7 +529,10 @@ variants: [
   },
   ////////////////////////////////////////////////////////////////////////////////
   set: {
-    style: "fill:none;stroke:#999999;stroke-width:2px;"
+    style: "fill:#e8e8e8;stroke:#999999;stroke-width:4px;",
+    from:"#e8e8e8", 
+    to:"#999999",
+    dur: 1
    
   }  
 }, /// var15 end 
@@ -564,8 +565,13 @@ variants: [
   },
   ////////////////////////////////////////////////////////////////////////////////
   animateMotion: {
-    style: "fill:none;stroke:#999999;stroke-width:2px;",
-    path: "M 0,0 A300,300 0 100,100 300,0"
+    style: "fill:#e8e8e8;stroke:#999999;stroke-width:4px;",
+    path_style: "fill:none;stroke:#999999;stroke-width:4px;",
+    path: "M 0,0 A300,300 0 100,100 300,0",
+    repeatCount: 1,
+    dur: 3,
+    width: -600,
+    height: 100
    
   }  
 } /// var16 end   
