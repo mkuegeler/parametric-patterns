@@ -78,3 +78,10 @@ git add *
 git commit -a -m "function summary_hbs,canvas_hbs,scripts_hbs(v) in comp.js customized." 
 git push origin master
 ```
+
+## 18.08.2016
+```
+git add * 
+git commit -a -m "Full Screen mode in Safari fixed." 
+git push origin master
+```

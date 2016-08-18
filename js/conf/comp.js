@@ -83,7 +83,7 @@ vars.variants.forEach( function(v) {
 	
  template +=
  '<div id="chapter_'+i+'"><div class="page-header"><h2>'+v.slide.name+'</h2></div>' +
- '<a name="chapter_'+i+'"/><div id="embedded_svg_00'+i+'"></div><div class="download_svg" id="download_svg_00'+i+'"></div><br/><a id="download_svg_00'+i+'_download" class="btn btn-default">Download</a>'+
+ '<a name="chapter_'+i+'"/><div class="embedded_svg" id="embedded_svg_00'+i+'"></div><div class="download_svg" id="download_svg_00'+i+'"></div><br/><a id="embedded_svg_00'+i+'_download" class="btn btn-default">Download</a>'+
  '<button type="button" id="full_screen_00'+i+'" class="btn btn-default">Full Screen</button>'+
  '<button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapse_svg_code_00'+i+'" aria-expanded="false" aria-controls="collapse_svg_code_00'+i+'">SVG Source</button></p>'+
  '<div class="collapse" id="collapse_svg_code_00'+i+'"><pre><code id="embedded_svg_code_00'+i+'"></code></pre></div><div></div>'+
@@ -116,8 +116,12 @@ vars.variants.forEach( function(v) {
 '$("#embedded_svg_00'+i+'_download").click(function () {'+
 'var download = document.getElementById("embedded_svg_00'+i+'_download");'+
 'var svg = document.getElementById("download_svg_00'+i+'").innerHTML;'+
-'download.setAttribute("href", "data:text/text;charset=utf-8," +  encodeURIComponent(svg));'+
+'download.setAttribute("href", "data:image/svg+xml," +  encodeURIComponent(svg));'+
 'download.setAttribute("download", "embedded_svg_00'+i+'.svg");});';	
+  
+//  template +=	'var elem = document.getElementById("embedded_svg_00'+i+'");'+
+//  'document.getElementById("full_screen_00'+i+'").addEventListener("click", () => {'+
+//      'if (screenfull.enabled) {screenfull.request(elem);} });';
 	
 	i++;
 }
