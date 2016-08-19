@@ -85,3 +85,10 @@ git add *
 git commit -a -m "Full Screen mode in Safari fixed." 
 git push origin master
 ```
+
+## 19.08.2016
+```
+git add * 
+git commit -a -m "Repository patterns added." 
+git push origin master
+```

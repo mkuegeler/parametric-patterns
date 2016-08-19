@@ -13,14 +13,16 @@
 <title>Medigeist</title>
 
 <!-- Bootstrap core CSS -->
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"> -->
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
 <!-- Documentation extras -->
-<link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+<!--  <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet"> -->
+<link href="../../css/docs.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="css/site.css" rel="stylesheet">
+<link href="../../css/site.css" rel="stylesheet">
 <!-- Favicons -->
-<link rel="apple-touch-icon-precomposed" href="http://getbootstrap.com/apple-touch-icon-precomposed.png">
-<link rel="icon" href="http://getbootstrap.com/favicon.ico">
+<!-- <link rel="apple-touch-icon-precomposed" href="http://getbootstrap.com/apple-touch-icon-precomposed.png">
+<link rel="icon" href="http://getbootstrap.com/favicon.ico"> -->
 
 <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/zenburn.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
@@ -47,9 +49,9 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">HOME</a></li>
-        <li class="active"><a href="docs/">ABOUT</a></li>
+        <li class="active"><a href="/repo.html">REPOSITORY</a></li>
         <!-- <li><a href="sample.html">SAMPLE</a></li> -->
-        <li><a href="#">DOCS</a></li>
+        <li><a href="#">DOWNLOAD</a></li>
       </ul>
     </nav>
   </div>
@@ -61,20 +63,7 @@
   <div class="container">
     <div id="table_of_content">
        <div class="page-header"><h4>TABLE OF CONTENTS</h4></div>
-           <ul id="hb_placeholder_01" class="list-group">
-               <li class="list-group-item"><a href="repository/overview/index.html">Generic SVG Elements: Overview</a>
-				   <p class="list-description">Simple SVG patterns and animations.</p>
-			   </li>
-						 <li class="list-group-item"><a href="repository/patterns/index.html">Patterns and Structures</a>
-				   <p class="list-description">Simple SVG patterns and animations.</p>
-			   </li>
-			   <!-- <li class="list-group-item"><a href="repository/1/index.html">Generic Patterns 1</a>
-				   <p class="list-description">Simple SVG patterns and animations.</p>
-			   </li>
-			   <li class="list-group-item"><a href="repository/2/index.html">Generic Patterns 2</a>
-				   <p class="list-description">Simple SVG patterns and animations.</p>
-			   </li> -->
-		   </ul>
+           <ul id="hb_placeholder_01" class="list-group"></ul>
        </div>
     </div>
 </div>
@@ -112,18 +101,44 @@
 <!-- JavaScript Recources ========================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
-<script type="text/javascript" src="lib/handlebars-v3.0.0.js"></script>
+<script type="text/javascript" src="../../lib/handlebars-v3.0.0.js"></script>
 
 <!--  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
-<script src="lib/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="../../lib/jquery.min.js"></script>
+<!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> -->
+<script src="../../lib/bootstrap.min.js"></script>
 <!-- <script src="http://getbootstrap.com/assets/js/docs.min.js"></script> -->
 
+<!-- require.js -->
+<!--  <script data-main="js/main.js" src="http://requirejs.org/docs/release/2.1.15/minified/require.js"></script> -->
+<script data-main="main.js" src="../../lib/require.js"></script>
 
+<!-- <script src="http://sindresorhus.com/screenfull.js/src/screenfull.js"></script> -->
+<script src="../../lib/screenfull.min.js"></script>
+<script src="../../js/conf/scheme.js"></script>
+<script id="hb_placeholder_03"></script>
 
 <!-- JavaScript Recources ========================================= -->
 
+<script id="set_hbs" type="text/javascript">
 
+function hbs_templates (data,amount) {
+
+var source, template;
+
+for (i=1; i<=amount; i++) {
+source = document.getElementById("siteTemplate_0"+i).innerHTML;
+template = Handlebars.compile(source);
+document.getElementById("hb_placeholder_0"+i).innerHTML = template(data);
+}
+
+}
+
+</script>
+<!-- Handlebars Templates ========================================== -->
+<span id="data_placeholder"></span>
+<span id="tmpl_placeholder"></span>
+<!-- Handlebars Templates ========================================== -->
 
 </body>
 </html>
