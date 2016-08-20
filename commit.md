@@ -92,3 +92,10 @@ git add *
 git commit -a -m "Repository patterns added." 
 git push origin master
 ```
+
+## 20.08.2016
+```
+git add * 
+git commit -a -m "Repository animations added. Symbols and Use elements added." 
+git push origin master
+```

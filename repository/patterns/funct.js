@@ -210,6 +210,7 @@ function pattern_b(params) {
 	
 	_params.x = _params.r;
 	_params.y = _params.r;
+	
 	_params.width = (_params.r*2);
 	_params.height = (_params.r*2);
 	var f = 2;

@@ -1,0 +1,22 @@
+<svg id="id_0x989640" boxh="900" boxw="1600" scale="2" style="background-color:#465E8A;" viewBox="0 0 1600 900" height="100%" width="100%" description="Description of element" preserveAspectRatio="xMidYMid meet" xmlns_xlink="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xlinkNS="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" name="animateMotion element">
+<defs id="id_0x832118" name="definitions">
+<symbol id="id_0x951122">
+<line id="id_0x791186" style="stroke:#ffffff;stroke-width:0.5px;" y2="0" x2="278" y1="0" x1="0">
+</line>
+<line id="id_0x870409" style="stroke:#ffffff;stroke-width:0.5px;" y2="50" x2="278" y1="50" x1="0">
+</line>
+</symbol>
+</defs>
+<g id="id_0x171240" transform="translate(50,50)" height="825" width="1525" y="-12.5" x="-12.5">
+<rect id="id_0x774707" transform="translate(0,0)" style="fill:none;stroke:#ffffff;stroke-width:1px; stroke-dasharray:5,5" ry="0" rx="0" height="825" width="1525" y="-12.5" x="-12.5">
+</rect>
+<circle id="id_0x138584" style="fill:#ffffff;stroke:none;" transform="translate(744,830)" cy="0" cx="0" r="12">
+</circle>
+<rect id="id_0x197531" style="fill:none;stroke:#ffffff;stroke-width:1px;" transform="translate(10,10)" height="780" ry="0.1" rx="0.1" y="0" x="0" width="600">
+</rect>
+<rect id="id_0x699233" style="fill:none;stroke:#ffffff;stroke-width:1px;" transform="translate(890,10)" height="780" ry="0.1" rx="0.1" y="0" x="0" width="600">
+</rect>
+<use id="id_0x251678" transform="translate(10,10)"  xlink:href="#id_0x951122" xlink_href="id_0x951122">
+</use>
+</g>
+</svg>

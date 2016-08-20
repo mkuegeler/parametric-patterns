@@ -105,7 +105,7 @@ variants: [
   ////////////////////////////////////////////////////////////////////////////////
   pattern_b: {    
     r:58.5,
-    patternTransform: "translate(61.5,62.5)"    
+   patternTransform: "translate(61.5,62.5)"   
   }  
 } /// var3 end  
 ]

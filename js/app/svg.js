@@ -142,7 +142,15 @@ medigeist.prototype.geometry = function (params) {
     for (var key in attributes) {
 		// special case: stop elements
 		if ((key == "color") || (key == "opacity")) { key_name = "stop-"+key; } else {key_name = key;}
+			
+		// special case: xmlns:xlink. Use xmlns_xlink instead of xmlns:xlink. colons are not accepted in json keys
+		if (key == "xmlns_xlink") { key_name = "xmlns:xlink"; } else {key_name = key;}	
         el.setAttribute(key_name, attributes[key] );
+		
+		// special case: xlink:href. Use xlink_href instead of xlink:href. colons are not accepted in json keys
+		if (key == "xlink_href") { key_name = "xlink:href"; attributes[key] = "#"+attributes[key]; el.setAttributeNS(svg.xmlns_xlink, key_name, attributes[key] ); } 
+			else {key_name = key; el.setAttribute(key_name, attributes[key] );}		
+			
 	}
 	
 	document.getElementById(layer).appendChild(el);
@@ -222,6 +230,28 @@ return this.geometry(params);
 ///////////////////////////////////////////////////////////////////////////////
 // wrapper function 
 medigeist.prototype.g = function (params) {
+
+// if no params: set an empty hash array
+if (!params) { params = {}; } 
+// add the element identifier (type) to params array
+params.type = this.getNameOfCall(arguments.callee);	
+return this.geometry(params);
+		 
+};
+///////////////////////////////////////////////////////////////////////////////
+// wrapper function 
+medigeist.prototype.use = function (params) {
+
+// if no params: set an empty hash array
+if (!params) { params = {}; } 
+// add the element identifier (type) to params array
+params.type = this.getNameOfCall(arguments.callee);	
+return this.geometry(params);
+		 
+};
+///////////////////////////////////////////////////////////////////////////////
+// wrapper function 
+medigeist.prototype.symbol = function (params) {
 
 // if no params: set an empty hash array
 if (!params) { params = {}; } 
@@ -409,6 +439,17 @@ return this.geometry(params);
 ///////////////////////////////////////////////////////////////////////////////
 // wrapper function 
 medigeist.prototype.animateMotion = function (params) {
+
+// if no params: set an empty hash array
+if (!params) { params = {}; } 
+// add the element identifier (type) to params array
+params.type = this.getNameOfCall(arguments.callee);	
+return this.geometry(params);
+		 
+};
+///////////////////////////////////////////////////////////////////////////////
+// wrapper function 
+medigeist.prototype.mpath = function (params) {
 
 // if no params: set an empty hash array
 if (!params) { params = {}; } 
