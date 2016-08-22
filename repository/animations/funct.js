@@ -7,7 +7,25 @@ function position (params) {
 	return {x:((params.boxw/2)-(params.width/2)), y:((params.boxh/2)-(params.height/2))};
 }
 ////////////////////////////////////////////////////////////////////////////////
+// setup list of coordinates for polyline element
+// param = {p1:"0,0", p2:"0,0"};
 
+// function coordinates(params) {
+// 	var points = "";
+// 	 for (var p in params) {points += " "+params[p]+" ";}
+	
+// 	return points;
+// }
+
+////////////////////////////////////////////////////////////////////////////////
+// setup list of coordinates for polyline element
+// param = {p1:"0,0", p2:"0,0"};
+
+function coordinates(params) {
+	var points = "";	 
+	params.forEach(function(p) { points += " "+p.x+","+p.y+" ";	});	
+  return points;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // main functions
@@ -478,19 +496,99 @@ function animateMotion(params) {
 	
 	var start_button = el.circle({layer:_params.layer, r:12, transform:"translate(744,830)",style: "fill:#ffffff;stroke:none;"}); 
 	
-	var left_frame = el.rect({layer:_params.layer, width:600, height:780, transform:"translate(10,10)",style: "fill:none;stroke:#ffffff;stroke-width:1px;"});  
+	//var left_frame = el.rect({layer:_params.layer, width:600, height:780, transform:"translate(10,10)",style: "fill:none;stroke:#ffffff;stroke-width:1px;"});  
 	
-	var right_frame = el.rect({layer:_params.layer, width:600, height:780, transform:"translate(890,10)",style: "fill:none;stroke:#ffffff;stroke-width:1px;"}); 
+	//var right_frame = el.rect({layer:_params.layer, width:600, height:780, transform:"translate(890,10)",style: "fill:none;stroke:#ffffff;stroke-width:1px;"}); 
+	
+	// points: "0,0 200,0 200,200 400,200 400,400 200,400 200,600 0,600 0,400 -200,400 -200,200 0,200 0,0",
+	
+	var channel_offset = (params.container.width/8);
+	var channel_height = (params.container.height/4);
+	
+// 	var points = { p01: " 0,0 ", 
+// 								 p02:" "+((params.container.width/2)-channel_offset)+",0 ", 
+// 								 p03:" "+((params.container.width/2)-channel_offset)+ ","+((params.container.height/2)-channel_height),
+// 								 p04:" "+((params.container.width/2)+channel_offset)+ ","+((params.container.height/2)-channel_height),
+// 								 p05:" "+((params.container.width/2)+channel_offset)+ ",0 ",
+// 								 p06:" "+((params.container.width/1))+ ",0 ",
+// 								 p07:" "+((params.container.width/1))+ ","+(params.container.height/1),
+// 								 p08:" "+((params.container.width/2)+channel_offset)+ ","+(params.container.height/1),
+// 								 p09:" "+((params.container.width/2)+channel_offset)+ ","+((params.container.height/2)+channel_height),
+// 								 p10:" "+((params.container.width/2)-channel_offset)+ ","+((params.container.height/2)+channel_height),
+// 								 p11:" "+((params.container.width/2)-channel_offset)+","+(params.container.height/1),
+// 								 p12: " 0,"+(params.container.height/1)
+// 							 }
+	
+// 	var points = { p01: "0,0", 
+// 								 p02:((params.container.width/2)-channel_offset)+",0", 
+// 								 p03:((params.container.width/2)-channel_offset)+ ","+((params.container.height/4)-(channel_height/2)),
+// 								 p04:((params.container.width/2)+channel_offset)+ ","+((params.container.height/4)-(channel_height/2)),
+// 								 p05:((params.container.width/2)+channel_offset)+ ",0",
+// 								 p06:((params.container.width/1))+ ",0",
+// 								 p07:((params.container.width/1))+ ","+(params.container.height/1),
+// 								 p08:((params.container.width/2)+channel_offset)+ ","+(params.container.height/1),
+// 								 p09:((params.container.width/2)+channel_offset)+ ","+(((params.container.height/2)+(params.container.height/4))+(channel_height/2)),
+// 								 p10:((params.container.width/2)-channel_offset)+ ","+(((params.container.height/2)+(params.container.height/4))+(channel_height/2)),
+// 								 p11:((params.container.width/2)-channel_offset)+","+(params.container.height/1),
+// 								 p12:"0,"+(params.container.height/1),
+// 								 p13: "0,0"
+// 							 }
+	
+	var main_points = [
+		        {x:0,y:0}, // 1
+						{x:((params.container.width/2)-channel_offset),y:0}, // 2
+						{x:((params.container.width/2)-channel_offset),y:((params.container.height/4)-(channel_height/2))}, // 3
+						{x:((params.container.width/2)+channel_offset),y:((params.container.height/4)-(channel_height/2))}, // 4
+		        {x:((params.container.width/2)+channel_offset),y:0}, // 5
+		        {x:params.container.width,y:0}, // 6
+		        {x:params.container.width,y:params.container.height}, // 7
+		        {x:((params.container.width/2)+channel_offset),y:params.container.height}, // 8
+		        {x:((params.container.width/2)+channel_offset),y:(((params.container.height/2)+(params.container.height/4))+(channel_height/2))}, // 9
+		        {x:((params.container.width/2)-channel_offset),y:(((params.container.height/2)+(params.container.height/4))+(channel_height/2))}, // 10
+		        {x:((params.container.width/2)-channel_offset),y:params.container.height}, // 11
+		        {x:0,y:params.container.height}, // 12
+		        {x:0,y:0} // 13						
+					 ];
+	
+	var main_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", points: coordinates(main_points)});
+	
+	var channel_points = [
+		        {x:main_points[2].x, y:(main_points[2].y+channel_height)},
+		        {x:main_points[3].x, y:(main_points[2].y+channel_height)},
+		        {x:main_points[8].x, y:(main_points[8].y-channel_height)},
+		        {x:main_points[9].x, y:(main_points[8].y-channel_height)},
+		        {x:main_points[2].x, y:(main_points[2].y+channel_height)}
+					 ];
+	
+	var channel_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", points: coordinates(channel_points)});
+	
+// 	var main_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", 
+// 																points: points.p01+
+// 																        points.p02+
+// 																        points.p03+
+// 																        points.p04+
+// 																        points.p05+
+// 																        points.p06+
+// 																        points.p07+
+// 																        points.p08+
+// 																        points.p09+
+// 																        points.p10+
+// 																        points.p11+
+// 																        points.p12+
+// 																        points.p01
+// 															 });
+	
+	// "0,0 "+(params.container.width/2)+",0 "+(params.container.width/2)+ ","+(params.container.height/2)+" "
 	
 	// var leftRight_channel = el.rect({layer:_params.layer, width:280, height:100, ,style: "fill:none;stroke:#ffffff;stroke-width:1px;"}); 
 	
-	var channel = el.symbol({layer:defs});	
-	el.line({layer:channel.id, x1 : 0, y1: 0, x2: 278, y2:0, style: "stroke:#ffffff;stroke-width:1px;"});	
-	el.line({layer:channel.id, x1 : 0, y1: 0, x2: 278, y2:0, style: "stroke:#ffffff;stroke-width:1px;", transform:"translate(0,60)"});	
+	// var channel = el.symbol({layer:defs});	
+	// el.line({layer:channel.id, x1 : 0, y1: 0, x2: 278, y2:0, style: "stroke:#ffffff;stroke-width:1px;"});	
+	// el.line({layer:channel.id, x1 : 0, y1: 0, x2: 278, y2:0, style: "stroke:#ffffff;stroke-width:1px;", transform:"translate(0,60)"});	
 	
-	el.use({layer:_params.layer, xlink_href:channel.id, height:80, x:0, y:0, transform:"translate(610,100)"});
-	el.use({layer:_params.layer, xlink_href:channel.id, height:80, x:0, y:0, transform:"translate(610,300)"});
-	el.use({layer:_params.layer, xlink_href:channel.id, height:80, x:0, y:0, transform:"translate(610,600)"});
+	// el.use({layer:_params.layer, xlink_href:channel.id, height:80, x:0, y:0, transform:"translate(610,100)"});
+	// el.use({layer:_params.layer, xlink_href:channel.id, height:80, x:0, y:0, transform:"translate(610,300)"});
+	// el.use({layer:_params.layer, xlink_href:channel.id, height:80, x:0, y:0, transform:"translate(610,600)"});
 	
 	// var factor = {x:((params.container.width/2)-(_params.width/2)), y:((params.container.height/2)-(_params.height/2))};	
 	

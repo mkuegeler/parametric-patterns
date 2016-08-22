@@ -18,7 +18,7 @@ function (comp,style,funct,vars) {
 
 style.assembler = function (params,el) {
   var i = 0; var layer = [];
-  for (p in params) {
+  for (var p in params) {
        params[p].el = el; params[p].layer = layer; layer[i] = funct[p](params); i++;
   } return el;
 }

@@ -108,7 +108,7 @@ medigeist.prototype.geometry = function (params) {
 	var type = params.type;
 	
 	// type in params is no longer needed, therefore delete it
-    delete params.type;
+  delete params.type;
     
     // set id value if not in params
 	// the first element of the array is the primary element, therefore it needs an unique identifier.
@@ -132,9 +132,6 @@ medigeist.prototype.geometry = function (params) {
 	
 	var attributes = this.validate(params,def[type]);
 	
-    // special case: text element
-	if (attributes.data) {var data = attributes.data; delete attributes.data;  }
-	
 	var el = document.createElementNS(svg.xmlns,type);
 	
 	var key_name; 
@@ -142,20 +139,19 @@ medigeist.prototype.geometry = function (params) {
     for (var key in attributes) {
 		// special case: stop elements
 		if ((key == "color") || (key == "opacity")) { key_name = "stop-"+key; } else {key_name = key;}
+			 el.setAttribute(key_name, attributes[key] );
 			
 		// special case: xmlns:xlink. Use xmlns_xlink instead of xmlns:xlink. colons are not accepted in json keys
-		if (key == "xmlns_xlink") { key_name = "xmlns:xlink"; } else {key_name = key;}	
-        el.setAttribute(key_name, attributes[key] );
+		if (key == "xmlns_xlink") { key_name = "xmlns:xlink"; } else {key_name = key;}	    
 		
 		// special case: xlink:href. Use xlink_href instead of xlink:href. colons are not accepted in json keys
 		if (key == "xlink_href") { key_name = "xlink:href"; attributes[key] = "#"+attributes[key]; el.setAttributeNS(svg.xmlns_xlink, key_name, attributes[key] ); } 
-			else {key_name = key; el.setAttribute(key_name, attributes[key] );}		
-			
+	
 	}
 	
 	document.getElementById(layer).appendChild(el);
 	// special case: text element. Add text content
-	if (data) {el.appendChild(document.createTextNode(data));}
+	if (attributes.data) {el.appendChild(document.createTextNode(attributes.data));}
 	
 	
 	return attributes;

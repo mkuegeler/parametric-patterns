@@ -21,13 +21,13 @@ git push origin master
 ## 09.08.2016
 ```
 git add * 
-git commit -a -m "Core element (path) in repository 0 added." 
+git commit -a -m "Core element (path) added." 
 git push origin master
 ```
 ## 09.08.2016
 ```
 git add * 
-git commit -a -m "Core element (text) in repository 0 started." 
+git commit -a -m "Core element (text) started." 
 git push origin master
 ```
 ## 10.08.2016
@@ -40,21 +40,21 @@ git push origin master
 ## 11.08.2016
 ```
 git add * 
-git commit -a -m "Core elements (linearGradient and radialGradient) in repository 0 added." 
+git commit -a -m "Core elements (linearGradient and radialGradient) added." 
 git push origin master
 ```
 
 ## 16.08.2016
 ```
 git add * 
-git commit -a -m "Core elements (pattern, animate, animateTransform) in repository 0 added." 
+git commit -a -m "Core elements (pattern, animate, animateTransform) added." 
 git push origin master
 ```
 
 ## 17.08.2016
 ```
 git add * 
-git commit -a -m "Core elements (set, animateMotion) in repository 0 added. Repository 0 renamed to overview" 
+git commit -a -m "Core elements (set, animateMotion)  added." 
 git push origin master
 ```
 
@@ -97,5 +97,12 @@ git push origin master
 ```
 git add * 
 git commit -a -m "Repository animations added. Symbols and Use elements added." 
+git push origin master
+```
+
+## 22.08.2016
+```
+git add * 
+git commit -a -m "Repository animations: Frames added." 
 git push origin master
 ```
