@@ -106,3 +106,10 @@ git add *
 git commit -a -m "Repository animations: Frames added." 
 git push origin master
 ```
+
+## 23.08.2016
+```
+git add * 
+git commit -a -m "Repository animations: Layout customized." 
+git push origin master
+```

@@ -19,7 +19,7 @@ function position (params) {
 
 ////////////////////////////////////////////////////////////////////////////////
 // setup list of coordinates for polyline element
-// param = {p1:"0,0", p2:"0,0"};
+// params = [{x:0,y:0},{x:10,y:10}];
 
 function coordinates(params) {
 	var points = "";	 
@@ -550,7 +550,7 @@ function animateMotion(params) {
 		        {x:0,y:0} // 13						
 					 ];
 	
-	var main_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", points: coordinates(main_points)});
+	var main_frame = el.polyline({layer:_params.layer,style: "fill:#B6C5E3;stroke:#ffffff;stroke-width:0.5px;", points: coordinates(main_points)});
 	
 	var channel_points = [
 		        {x:main_points[2].x, y:(main_points[2].y+channel_height)},
@@ -560,7 +560,29 @@ function animateMotion(params) {
 		        {x:main_points[2].x, y:(main_points[2].y+channel_height)}
 					 ];
 	
-	var channel_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", points: coordinates(channel_points)});
+	var channel_frame = el.polyline({layer:_params.layer,style: "fill:#465E8A;stroke:#ffffff;stroke-width:0.5px;", points: coordinates(channel_points)});
+	
+	var inner_offset = 20;
+	var topleft_side = el.rect({layer:_params.layer,style: "fill:#7D8FB0;stroke:#000000;stroke-width:1.5px;", x:(inner_offset/2),y:(inner_offset/2), 
+													 width:(main_points[2].x-inner_offset),
+													 height:(channel_points[0].y-inner_offset)
+													 //transform:"translate("+(inner_offset/2)+","+(inner_offset/2)+")"
+													});
+	var topright_side = el.rect({layer:_params.layer,style: "fill:#7D8FB0;stroke:#000000;stroke-width:1.5px;", x:(inner_offset/2),y:(inner_offset/2), 
+													 width:(main_points[2].x-inner_offset),
+													 height:(channel_points[0].y-inner_offset),
+													 transform:"translate("+main_points[3].x+",0)"
+													});
+	var buttomright_side = el.rect({layer:_params.layer,style: "fill:#7D8FB0;stroke:#000000;stroke-width:1.5px;", x:(inner_offset/2),y:(inner_offset/2), 
+													 width:(main_points[2].x-inner_offset),
+													 height:(channel_points[0].y-inner_offset),
+													 transform:"translate("+main_points[3].x+","+channel_points[2].y+")"
+													});
+	var buttomleft_side = el.rect({layer:_params.layer,style: "fill:#7D8FB0;stroke:#000000;stroke-width:1.5px;", x:(inner_offset/2),y:(inner_offset/2), 
+													 width:(main_points[2].x-inner_offset),
+													 height:(channel_points[0].y-inner_offset),
+													 transform:"translate(0,"+channel_points[2].y+")"
+													});
 	
 // 	var main_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", 
 // 																points: points.p01+
