@@ -550,7 +550,7 @@ function animateMotion(params) {
 		        {x:0,y:0} // 13						
 					 ];
 	
-	var main_frame = el.polyline({layer:_params.layer,style: "fill:#B6C5E3;stroke:#ffffff;stroke-width:0.5px;", points: coordinates(main_points)});
+	var main_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", points: coordinates(main_points)});
 	
 	var channel_points = [
 		        {x:main_points[2].x, y:(main_points[2].y+channel_height)},
@@ -560,29 +560,41 @@ function animateMotion(params) {
 		        {x:main_points[2].x, y:(main_points[2].y+channel_height)}
 					 ];
 	
-	var channel_frame = el.polyline({layer:_params.layer,style: "fill:#465E8A;stroke:#ffffff;stroke-width:0.5px;", points: coordinates(channel_points)});
+	var channel_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", points: coordinates(channel_points)});
 	
 	var inner_offset = 20;
-	var topleft_side = el.rect({layer:_params.layer,style: "fill:#7D8FB0;stroke:#000000;stroke-width:1.5px;", x:(inner_offset/2),y:(inner_offset/2), 
+	
+	var top_group = el.g({layer:_params.layer, transform:"translate(0,"+((channel_points[0].y/8)+(inner_offset/2))+")"});
+	
+	var topleft_side = el.rect({layer:top_group.id,style: "fill:none;stroke:#ffffff;stroke-width:1.5px;", x:(inner_offset/2),y:(inner_offset/2), 
 													 width:(main_points[2].x-inner_offset),
 													 height:(channel_points[0].y-inner_offset)
 													 //transform:"translate("+(inner_offset/2)+","+(inner_offset/2)+")"
 													});
-	var topright_side = el.rect({layer:_params.layer,style: "fill:#7D8FB0;stroke:#000000;stroke-width:1.5px;", x:(inner_offset/2),y:(inner_offset/2), 
+	var topright_side = el.rect({layer:top_group.id,style: "fill:none;stroke:#ffffff;stroke-width:1.5px;", x:(inner_offset/2),y:(inner_offset/2), 
 													 width:(main_points[2].x-inner_offset),
 													 height:(channel_points[0].y-inner_offset),
 													 transform:"translate("+main_points[3].x+",0)"
 													});
-	var buttomright_side = el.rect({layer:_params.layer,style: "fill:#7D8FB0;stroke:#000000;stroke-width:1.5px;", x:(inner_offset/2),y:(inner_offset/2), 
+	
+	var buttom_group = el.g({layer:_params.layer, transform:"translate(0,"+(((channel_points[3].y/8)-(channel_points[3].y/4))+(inner_offset/2))+")"});
+	
+	var buttomright_side = el.rect({layer:buttom_group.id,style: "fill:none;stroke:#ffffff;stroke-width:1.5px;", x:(inner_offset/2),y:(inner_offset/2), 
 													 width:(main_points[2].x-inner_offset),
 													 height:(channel_points[0].y-inner_offset),
 													 transform:"translate("+main_points[3].x+","+channel_points[2].y+")"
 													});
-	var buttomleft_side = el.rect({layer:_params.layer,style: "fill:#7D8FB0;stroke:#000000;stroke-width:1.5px;", x:(inner_offset/2),y:(inner_offset/2), 
+	var buttomleft_side = el.rect({layer:buttom_group.id,style: "fill:none;stroke:#ffffff;stroke-width:1.5px;", x:(inner_offset/2),y:(inner_offset/2), 
 													 width:(main_points[2].x-inner_offset),
 													 height:(channel_points[0].y-inner_offset),
 													 transform:"translate(0,"+channel_points[2].y+")"
 													});
+	
+	var radius = (((channel_points[0].y/2)-inner_offset)/2);
+	var left_circle = el.circle({layer:top_group.id,style: "fill:#cccccc;stroke:#999999;stroke-width:10px;", r:radius, 
+															 cx:(main_points[2].x/2),cy:(channel_points[0].y/2)});
+
+
 	
 // 	var main_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", 
 // 																points: points.p01+
