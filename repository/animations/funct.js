@@ -591,11 +591,17 @@ function animateMotion(params) {
 													});
 	
 	var radius = (((channel_points[0].y/2)-inner_offset)/2);
-	var left_circle = el.circle({layer:top_group.id,style: "fill:#cccccc;stroke:#999999;stroke-width:10px;", r:radius, 
+	
+	var left_circle_A = el.circle({layer:top_group.id,style: "fill:#cccccc;stroke:#999999;stroke-width:10px;", r:radius, 
+															 cx:(main_points[2].x/2),cy:(channel_points[0].y/2)});
+	var left_circle_B = el.circle({layer:top_group.id,style: "fill:#cccccc;stroke:#999999;stroke-width:10px;", r:radius, transform:"translate(0,"+((params.container.height/2))+")",
+															 cx:(main_points[2].x/2),cy:(channel_points[0].y/2)});														 
+    var right_circle_A = el.circle({layer:top_group.id,style: "fill:none;stroke:#999999;stroke-width:10px;", r:radius, transform:"translate("+((params.container.width/2)+(params.container.width/8))+",0)",
 															 cx:(main_points[2].x/2),cy:(channel_points[0].y/2)});
 
+	var right_circle_B = el.circle({layer:top_group.id,style: "fill:none;stroke:#999999;stroke-width:10px;", r:radius, transform:"translate("+((params.container.width/2)+(params.container.width/8))+","+((params.container.height/2))+")",
+															 cx:(main_points[2].x/2),cy:(channel_points[0].y/2)});
 
-	
 // 	var main_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", 
 // 																points: points.p01+
 // 																        points.p02+
