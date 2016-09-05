@@ -6,20 +6,18 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A JavaScript library to create parametric animations on the web.">
+<meta name="description" content="A JavaScript library to create parametric patterns on the web.">
 <meta name="keywords" content="HTML, CSS, JS, JavaScript, SVG, Parametric Animations">
 <meta name="author" content="Michael Kuegeler">
 
-<title>Medigeist</title>
+<title>Medigeist: About</title>
 
 <!-- Bootstrap core CSS -->
-<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"> -->
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- Documentation extras -->
-<!--  <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet"> -->
-<link href="../../css/docs.min.css" rel="stylesheet">
+<link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="../../css/site.css" rel="stylesheet">
+<link href="css/site.css" rel="stylesheet">
 <!-- Favicons -->
 <!-- <link rel="apple-touch-icon-precomposed" href="http://getbootstrap.com/apple-touch-icon-precomposed.png">
 <link rel="icon" href="http://getbootstrap.com/favicon.ico"> -->
@@ -43,15 +41,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="../" class="navbar-brand">PARAMETRIC PATTERNS</a>
+      <a href="../" class="navbar-brand">MEDIGEIST</a>
     </div>
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
 
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">HOME</a></li>
-        <li><a href="/repo.html">REPOSITORY</a></li>
+        <li><a href="#">ABOUT</a></li>
+				<li><a href="repo.html">REPOSITORY</a></li>
         <!-- <li><a href="sample.html">SAMPLE</a></li> -->
-        <li><a href="#">DOWNLOAD</a></li>
+        <li><a href="#">DOCS</a></li>
       </ul>
     </nav>
   </div>
@@ -62,8 +61,22 @@
 <div class="bs-docs-header" id="content">
   <div class="container">
     <div id="table_of_content">
-       <div class="page-header"><h2>Table of Contents</h2></div>
-           <ul id="hb_placeholder_01" class="list-group"></ul>
+       <div class="page-header"><h2>About</h2></div>
+          <span class="txt">
+            Medigeist is a design environment, in which you can create parametric SVG documents based on the Document Object Model (DOM) as the programming interface in your web browser. 
+            <br/>The DOM is used as the engine to generate plain SVG which can be saved as a file ready for external procession.
+            It runs solely on client site, no server-side scripting is required. This makes it easy to deploy and let you run Medigeist on different platforms. <br/> 
+						A parametric SVG document can be a diagram, a process model, a technical draft, flow charts, a ground plan, an animation or just a composition of geometrical forms. 
+The design of more complex graphical documents with regard to layout constraints and formal dependencies can be a tideous job by using common drawing applications. 
+						It's easy to draw a circle and assign style attributes but if you want to arrange a set of circles in a particular order or need to define dependencies between forms, 
+						for instance to run a sophisticated animation, your work becomes more complex and difficult to handle.<br/> Dealing with plain SVG code is not in favour of many people, 
+						so another approach is scripting. Scripting allows you to define reusable documents, for instance a complex layout such as a process diagram with specific parameters 
+						as a template for new layouts.
+However, if you want to share your work in external applications or just embed it as an image on a web site, 
+						the extensive use of javascript can be an issue. Your work is less deployable with javascript, 
+						let alone security issues to be taken into account.<br/> A solution could be to tranform the scripted 
+						work back into script-free SVG which can be processed by almost all modern SVG-capable web browsers and applications alike. 
+      </span>
        </div>
     </div>
 </div>
@@ -76,14 +89,13 @@
 <!-- Footer ========================================================= -->
 <footer class="bs-docs-footer" role="contentinfo">
  <ul class="bs-docs-footer-links muted">
-    <li><a href="https://github.com/mkuegeler/parametric-patterns">GitHub</a></li>
+      <li><a href="https://github.com/mkuegeler/parametric-patterns">GitHub</a></li>
       <li>&middot;</li>
       <li><a href="#">Docs</a></li>
       <li>&middot;</li>
       <li><a href="#">Contact</a></li>
       <li>&middot;</li>
-      <li><a href="#">Legal Notice</a></li>
-      <li>&middot;</li>
+      <li><a href="#">Legal Notice</a></li>      
  </ul>
 </div>
 </footer>
@@ -93,44 +105,18 @@
 <!-- JavaScript Recources ========================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
-<script type="text/javascript" src="../../lib/handlebars-v3.0.0.js"></script>
+<script type="text/javascript" src="lib/handlebars-v3.0.0.js"></script>
 
 <!--  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
-<script src="../../lib/jquery.min.js"></script>
-<!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> -->
-<script src="../../lib/bootstrap.min.js"></script>
+<script src="lib/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <!-- <script src="http://getbootstrap.com/assets/js/docs.min.js"></script> -->
 
-<!-- require.js -->
-<!--  <script data-main="js/main.js" src="http://requirejs.org/docs/release/2.1.15/minified/require.js"></script> -->
-<script data-main="main.js" src="../../lib/require.js"></script>
 
-<!-- <script src="http://sindresorhus.com/screenfull.js/src/screenfull.js"></script> -->
-<script src="../../lib/screenfull.min.js"></script>
-<script src="../../js/conf/scheme.js"></script>
-<script id="hb_placeholder_03"></script>
 
 <!-- JavaScript Recources ========================================= -->
 
-<script id="set_hbs" type="text/javascript">
 
-function hbs_templates (data,amount) {
-
-var source, template;
-
-for (i=1; i<=amount; i++) {
-source = document.getElementById("siteTemplate_0"+i).innerHTML;
-template = Handlebars.compile(source);
-document.getElementById("hb_placeholder_0"+i).innerHTML = template(data);
-}
-
-}
-
-</script>
-<!-- Handlebars Templates ========================================== -->
-<span id="data_placeholder"></span>
-<span id="tmpl_placeholder"></span>
-<!-- Handlebars Templates ========================================== -->
 
 </body>
 </html>

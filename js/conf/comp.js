@@ -47,7 +47,7 @@ hb_template.appendChild(hb_template_value);
 document.getElementById("tmpl_placeholder").appendChild(hb_template);
 
 }
-
+// hbs_templates is defined in the html file respectively
 var script = "data = {canvas: canvas("+library.length+")}; hbs_templates(data,"+templates.length+");";
 
 var dbPlaceholder = document.createElement("script");
@@ -82,12 +82,12 @@ vars.variants.forEach( function(v) {
 // template += '<li class="list-group-item"><a href="#">'+v.slide.name+'</a><p class="list-description">'+v.slide.description+'</p></li>';
 	
  template +=
- '<div id="chapter_'+i+'"><div class="page-header"><h2>'+v.slide.name+'</h2></div>' +
- '<a name="chapter_'+i+'"/><div class="embedded_svg" id="embedded_svg_00'+i+'"></div><div class="download_svg" id="download_svg_00'+i+'"></div><br/><a id="embedded_svg_00'+i+'_download" class="btn btn-default">Download</a>'+
+ '<div id="chapter_'+i+'"><div class="page-header"><h2 class="h_white">'+v.slide.name+'</h2></div>' +
+ '<a name="chapter_'+i+'"/><div class="embedded_svg" id="embedded_svg_00'+i+'"></div><div class="download_svg" id="download_svg_00'+i+'"></div><br/><p class="btn-toolbar"><a type="button" id="embedded_svg_00'+i+'_download" class="btn btn-default">Download</a>'+
  '<button type="button" id="full_screen_00'+i+'" class="btn btn-default">Full Screen</button>'+
  '<button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapse_svg_code_00'+i+'" aria-expanded="false" aria-controls="collapse_svg_code_00'+i+'">SVG Source</button></p>'+
- '<div class="collapse" id="collapse_svg_code_00'+i+'"><pre><code id="embedded_svg_code_00'+i+'"></code></pre></div><div></div>'+
- '<p><a href="#content">Back to Table of Contents</a></p><p>'+v.slide.description+'.</p></div>';	
+ '<div class="collapse" id="collapse_svg_code_00'+i+'"><pre class="code"><code id="embedded_svg_code_00'+i+'"></code></pre></div>'+
+ '<p class="link"><a href="#content">Back</a></p><p class="desc">'+v.slide.description+'.</p></div>';	
 	
 	i++;
 }

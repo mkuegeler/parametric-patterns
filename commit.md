@@ -127,3 +127,10 @@ git add *
 git commit -a -m "Repository animations: Circles added." 
 git push origin master
 ```
+
+## 05.09.2016
+```
+git add * 
+git commit -a -m "HTML and CSS customized." 
+git push origin master
+```
