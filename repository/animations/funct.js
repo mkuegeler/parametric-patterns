@@ -494,46 +494,12 @@ function animateMotion(params) {
 	_params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;	
 	var defs = layer.find(function(layer) {return layer.name === "defs"; }).id;	
 	
-	var start_button = el.circle({layer:_params.layer, r:12, transform:"translate(744,830)",style: "fill:#ffffff;stroke:none;"}); 
+	var start_button = el.circle({layer:_params.layer, r:12, transform:"translate(744,830)",style: "fill:#ffffff;stroke:none;"}); 	
 	
-	//var left_frame = el.rect({layer:_params.layer, width:600, height:780, transform:"translate(10,10)",style: "fill:none;stroke:#ffffff;stroke-width:1px;"});  
-	
-	//var right_frame = el.rect({layer:_params.layer, width:600, height:780, transform:"translate(890,10)",style: "fill:none;stroke:#ffffff;stroke-width:1px;"}); 
-	
-	// points: "0,0 200,0 200,200 400,200 400,400 200,400 200,600 0,600 0,400 -200,400 -200,200 0,200 0,0",
 	
 	var channel_offset = (params.container.width/8);
-	var channel_height = (params.container.height/4);
-	
-// 	var points = { p01: " 0,0 ", 
-// 								 p02:" "+((params.container.width/2)-channel_offset)+",0 ", 
-// 								 p03:" "+((params.container.width/2)-channel_offset)+ ","+((params.container.height/2)-channel_height),
-// 								 p04:" "+((params.container.width/2)+channel_offset)+ ","+((params.container.height/2)-channel_height),
-// 								 p05:" "+((params.container.width/2)+channel_offset)+ ",0 ",
-// 								 p06:" "+((params.container.width/1))+ ",0 ",
-// 								 p07:" "+((params.container.width/1))+ ","+(params.container.height/1),
-// 								 p08:" "+((params.container.width/2)+channel_offset)+ ","+(params.container.height/1),
-// 								 p09:" "+((params.container.width/2)+channel_offset)+ ","+((params.container.height/2)+channel_height),
-// 								 p10:" "+((params.container.width/2)-channel_offset)+ ","+((params.container.height/2)+channel_height),
-// 								 p11:" "+((params.container.width/2)-channel_offset)+","+(params.container.height/1),
-// 								 p12: " 0,"+(params.container.height/1)
-// 							 }
-	
-// 	var points = { p01: "0,0", 
-// 								 p02:((params.container.width/2)-channel_offset)+",0", 
-// 								 p03:((params.container.width/2)-channel_offset)+ ","+((params.container.height/4)-(channel_height/2)),
-// 								 p04:((params.container.width/2)+channel_offset)+ ","+((params.container.height/4)-(channel_height/2)),
-// 								 p05:((params.container.width/2)+channel_offset)+ ",0",
-// 								 p06:((params.container.width/1))+ ",0",
-// 								 p07:((params.container.width/1))+ ","+(params.container.height/1),
-// 								 p08:((params.container.width/2)+channel_offset)+ ","+(params.container.height/1),
-// 								 p09:((params.container.width/2)+channel_offset)+ ","+(((params.container.height/2)+(params.container.height/4))+(channel_height/2)),
-// 								 p10:((params.container.width/2)-channel_offset)+ ","+(((params.container.height/2)+(params.container.height/4))+(channel_height/2)),
-// 								 p11:((params.container.width/2)-channel_offset)+","+(params.container.height/1),
-// 								 p12:"0,"+(params.container.height/1),
-// 								 p13: "0,0"
-// 							 }
-	
+	var channel_height = (params.container.height/4);	
+
 	var main_points = [
 		        {x:0,y:0}, // 1
 						{x:((params.container.width/2)-channel_offset),y:0}, // 2
@@ -592,33 +558,24 @@ function animateMotion(params) {
 	
 	var radius = (((channel_points[0].y/2)-inner_offset)/2);
 	
+	var path_style = "fill:none;stroke:#ff0000;stroke-width:2px; stroke-dasharray:5,5"; 
+	var path_h =  "M0 0 L"+((params.container.width/2)+(params.container.width/8))+" 0";		
+  var path_A = el.path({layer:top_group.id, d:path_h, style: path_style, transform:"translate("+(main_points[2].x/2)+","+(channel_points[0].y/2)+")" });
+	
+	var left_circle_A1 = el.circle({layer:top_group.id,style: "fill:none;stroke:#999999;stroke-width:10px;", r:radius, 
+															 cx:(main_points[2].x/2),cy:(channel_points[0].y/2)});
 	var left_circle_A = el.circle({layer:top_group.id,style: "fill:#cccccc;stroke:#999999;stroke-width:10px;", r:radius, 
 															 cx:(main_points[2].x/2),cy:(channel_points[0].y/2)});
+	
+	var animateMotion_h = el.animateMotion({layer:left_circle_A.id, begin:start_button.id+".click", path:path_h, dur:3, repeatCount: 1});
+	
 	var left_circle_B = el.circle({layer:top_group.id,style: "fill:#cccccc;stroke:#999999;stroke-width:10px;", r:radius, transform:"translate(0,"+((params.container.height/2))+")",
 															 cx:(main_points[2].x/2),cy:(channel_points[0].y/2)});														 
-    var right_circle_A = el.circle({layer:top_group.id,style: "fill:none;stroke:#999999;stroke-width:10px;", r:radius, transform:"translate("+((params.container.width/2)+(params.container.width/8))+",0)",
+  var right_circle_A = el.circle({layer:top_group.id,style: "fill:none;stroke:#999999;stroke-width:10px;", r:radius, transform:"translate("+((params.container.width/2)+(params.container.width/8))+",0)",
 															 cx:(main_points[2].x/2),cy:(channel_points[0].y/2)});
-
 	var right_circle_B = el.circle({layer:top_group.id,style: "fill:none;stroke:#999999;stroke-width:10px;", r:radius, transform:"translate("+((params.container.width/2)+(params.container.width/8))+","+((params.container.height/2))+")",
 															 cx:(main_points[2].x/2),cy:(channel_points[0].y/2)});
 
-// 	var main_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", 
-// 																points: points.p01+
-// 																        points.p02+
-// 																        points.p03+
-// 																        points.p04+
-// 																        points.p05+
-// 																        points.p06+
-// 																        points.p07+
-// 																        points.p08+
-// 																        points.p09+
-// 																        points.p10+
-// 																        points.p11+
-// 																        points.p12+
-// 																        points.p01
-// 															 });
-	
-	// "0,0 "+(params.container.width/2)+",0 "+(params.container.width/2)+ ","+(params.container.height/2)+" "
 	
 	// var leftRight_channel = el.rect({layer:_params.layer, width:280, height:100, ,style: "fill:none;stroke:#ffffff;stroke-width:1px;"}); 
 	
@@ -634,7 +591,7 @@ function animateMotion(params) {
 	
 	// _params.transform = "translate("+factor.x+","+factor.y+")";
 	
-  //var path = el.path({layer:_params.layer, d:_params.path, style: _params.path_style, transform:_params.transform });
+	
 	
 	//var animateMotion_group = el.g({layer: _params.layer, transform: _params.transform});
 	

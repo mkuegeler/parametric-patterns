@@ -141,3 +141,10 @@ git add *
 git commit -a -m "CSS customized." 
 git push origin master
 ```
+
+## 06.09.2016
+```
+git add * 
+git commit -a -m "animateMotion customized." 
+git push origin master
+```
