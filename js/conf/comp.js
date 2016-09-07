@@ -82,7 +82,7 @@ vars.variants.forEach( function(v) {
 // template += '<li class="list-group-item"><a href="#">'+v.slide.name+'</a><p class="list-description">'+v.slide.description+'</p></li>';
 	
  template +=
- '<div id="chapter_'+i+'"><div class="page-header"><h2 class="h_white">'+i+'.'+v.slide.name+'</h2></div>' +
+ '<div id="chapter_'+i+'"><div class="page-header"><h2 class="h_white">'+i+'. '+v.slide.name+'</h2></div>' +
  '<a name="chapter_'+i+'"/><div class="embedded_svg" id="embedded_svg_00'+i+'"></div><div class="download_svg" id="download_svg_00'+i+'"></div><br/><p class="btn-toolbar"><a type="button" id="embedded_svg_00'+i+'_download" class="btn btn-default">Download</a>'+
  '<button type="button" id="full_screen_00'+i+'" class="btn btn-default">Full Screen</button>'+
  '<button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapse_svg_code_00'+i+'" aria-expanded="false" aria-controls="collapse_svg_code_00'+i+'">SVG Source</button></p>'+

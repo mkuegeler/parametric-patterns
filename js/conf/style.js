@@ -43,12 +43,12 @@ use: {},
 // symbol placeholder
 symbol: {},  
 // core svg elements
-circle: {r: 1, cx : 0, cy: 0, style: default_style},
-rect: {x : 0, y: 0, width:1, height:1, rx:0.1, ry:0.1, style: "fill:#cccccc;stroke:#999999;stroke-width:0.01px;"},
-line: {x1 : 0, y1: 0, x2: 1, y2:0, style: "stroke:#000000;stroke-width:0.10px;"},
+circle: {r: 100, cx : 0, cy: 0, style: default_style},
+rect: {x : 0, y: 0, width:100, height:100, style: "fill:none;stroke:#000000;stroke-width:1px;"},
+line: {x1 : 0, y1: 0, x2: 100, y2:0, style: "stroke:#000000;stroke-width:0.10px;"},
 polygon: {points: "0,0 1,1 2,0", style: default_style},
 path: {d: "M 0,0 A1,1 0 1,1 4,0", style: default_style},
-ellipse: {cx:0, cy:0, rx:2, ry:1, style:default_style},
+ellipse: {cx:0, cy:0, rx:200, ry:100, style:default_style},
 polyline: {points: "0,0 1,0 1,1 2,1 2,2 0,0", style:"fill:none;stroke:#999999;stroke-width:0.10px;"},
 text: {x : 0, y: 0, style: "stroke:none; fill:#ff0000;font-size: 1pt;", data: "sample text"},
 

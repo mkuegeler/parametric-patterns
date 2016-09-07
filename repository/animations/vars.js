@@ -44,7 +44,43 @@ variants: [
     height: 100
    
   }  
-} /// var1 end   
+}, /// var1 end
+{  /// var2 start
+  slide: {
+    name: "animateMotion Frame element",
+    description: "Description of element",
+    width:"100%",
+    height:"100%",
+    viewBox: "0 0 1600 900",
+    style: "background-color:#465E8A;",
+    scale:2,
+    boxw: 1600,
+    boxh: 900
+  },
+  defs: {
+    name: "definitions"
+  },
+  container: {
+    style: "fill:none;stroke:#ffffff;stroke-width:1px; stroke-dasharray:5,5",
+    AmountX:8,
+    AmountY:8,
+    width:1500,
+    height:800,
+    x:0,
+    y:0,
+    rx:0,
+    ry:0,
+    offset:0
+  },
+  ////////////////////////////////////////////////////////////////////////////////
+  animateMotionFrame: {
+    offset: 10,
+    repeatCount: 1,
+    dur: 3
+   
+   
+  }  
+} /// var2 end    
 ]
 // EOF
 });

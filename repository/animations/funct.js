@@ -21,11 +21,11 @@ function position (params) {
 // setup list of coordinates for polyline element
 // params = [{x:0,y:0},{x:10,y:10}];
 
-function coordinates(params) {
-	var points = "";	 
-	params.forEach(function(p) { points += " "+p.x+","+p.y+" ";	});	
-  return points;
-}
+// function coordinates(params) {
+// 	var points = "";	 
+// 	params.forEach(function(p) { points += " "+p.x+","+p.y+" ";	});	
+//   return points;
+// }
 
 ////////////////////////////////////////////////////////////////////////////////
 // main functions
@@ -516,7 +516,7 @@ function animateMotion(params) {
 		        {x:0,y:0} // 13						
 					 ];
 	
-	var main_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", points: coordinates(main_points)});
+	var main_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", points: el.coordinates(main_points)});
 	
 	var channel_points = [
 		        {x:main_points[2].x, y:(main_points[2].y+channel_height)},
@@ -526,7 +526,7 @@ function animateMotion(params) {
 		        {x:main_points[2].x, y:(main_points[2].y+channel_height)}
 					 ];
 	
-	var channel_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", points: coordinates(channel_points)});
+	var channel_frame = el.polyline({layer:_params.layer,style: "fill:none;stroke:#ffffff;stroke-width:0.5px;", points: el.coordinates(channel_points)});
 	
 	var inner_offset = 20;
 	
@@ -562,12 +562,18 @@ function animateMotion(params) {
 	var path_h =  "M0 0 L"+((params.container.width/2)+(params.container.width/8))+" 0";		
   var path_A = el.path({layer:top_group.id, d:path_h, style: path_style, transform:"translate("+(main_points[2].x/2)+","+(channel_points[0].y/2)+")" });
 	
+	var path_v =  "M0 0 L0 "+((params.container.height/2));		
+	//var path_B = el.path({layer:top_group.id, d:path_v, style: path_style, transform:"translate("+((params.container.width/1.225))+","+(channel_points[0].y/2)+")" });
+	
 	var left_circle_A1 = el.circle({layer:top_group.id,style: "fill:none;stroke:#999999;stroke-width:10px;", r:radius, 
 															 cx:(main_points[2].x/2),cy:(channel_points[0].y/2)});
 	var left_circle_A = el.circle({layer:top_group.id,style: "fill:#cccccc;stroke:#999999;stroke-width:10px;", r:radius, 
 															 cx:(main_points[2].x/2),cy:(channel_points[0].y/2)});
 	
 	var animateMotion_h = el.animateMotion({layer:left_circle_A.id, begin:start_button.id+".click", path:path_h, dur:3, repeatCount: 1});
+	
+	
+	
 	
 	var left_circle_B = el.circle({layer:top_group.id,style: "fill:#cccccc;stroke:#999999;stroke-width:10px;", r:radius, transform:"translate(0,"+((params.container.height/2))+")",
 															 cx:(main_points[2].x/2),cy:(channel_points[0].y/2)});														 
@@ -610,6 +616,89 @@ function animateMotion(params) {
 	return null;
 }
 ////////////////////////////////////////////////////////////////////////////////
+function animateMotionFrame(params) {	
+  
+  var el = params.animateMotionFrame.el;
+	delete params.animateMotionFrame.el;
+
+  var layer = params.animateMotionFrame.layer;
+	delete params.animateMotionFrame.layer;
+	
+	var style = params.animateMotionFrame.style;	
+	
+	var _params = params.animateMotionFrame;
+	    _params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;	
+	
+	var defs = layer.find(function(layer) {return layer.name === "defs"; }).id;		
+	
+	var start_button_offset = 25;
+	var start_button = el.circle({layer:_params.layer, r:12, transform:"translate("+(params.container.width/2)+","+(params.container.height+start_button_offset)+")",style: "fill:#ffffff;stroke:none;"}); 
+	
+	var box_style = "fill:none;stroke:#ffffff;stroke-width:1.5px;";
+	
+	// var box = el.rect({layer:_params.layer, style:box_style, height:params.container.height, width:params.container.width});
+	
+	// Level 1: Boundary Box
+	var offset = _params.offset;
+	var box_width = (params.container.width-offset);
+	var box_height = (params.container.height-offset);
+	
+	var center = el.circle({layer:_params.layer,style: box_style, r:offset,cx:(params.container.width/2),cy:(params.container.height/2)});
+	
+	var box_points = [
+		        {x:offset,y:offset}, 					
+		        {x:box_width,y:offset}, 
+		        {x:box_width,y:box_height},
+		        {x:offset,y:box_height},
+		        {x:offset,y:offset}
+					 ];
+	
+	// var box_transform = "translate("+(offset/2)+","+(offset/2)+")";
+	var box_frame = el.polyline({layer:_params.layer,style: box_style, points: el.coordinates(box_points)});
+	
+	// Level 2: Grid
+	
+	var vertical_mid_points = [
+		       {x:(params.container.width/2),y:offset}, 				
+		       {x:(params.container.width/2),y:box_height}
+					 ];
+	
+	var vertical_mid_line = el.polyline({layer:_params.layer,style: box_style, points: el.coordinates(vertical_mid_points)});
+	
+	var horizontal_mid_points = [
+		       {x:offset,y:(params.container.height/2)}, 				
+		       {x:box_width,y:(params.container.height/2)}
+					 ];
+	
+	var horizontal_mid_line = el.polyline({layer:_params.layer,style: box_style, points: el.coordinates(horizontal_mid_points)});
+	
+	// Level 3: Left / Right side. Depends on box_frame
+	var inner_style = "fill:none;stroke:#ff0000;stroke-width:2px;";
+	
+	var inner_offset = offset;
+	var left_points = [
+		        {x:(box_points[0].x+inner_offset),y:(box_points[0].y+inner_offset)}, 					
+		        {x:((params.container.width/2)-inner_offset),y:(box_points[1].y+inner_offset)},
+		        {x:((params.container.width/2)-inner_offset),y:(box_points[2].y-inner_offset)},
+		        {x:(box_points[0].x+inner_offset),y:(box_points[2].y-inner_offset)},
+		        {x:(box_points[0].x+inner_offset),y:(box_points[0].y+inner_offset)}
+					 ];
+	
+  var left_box = el.polyline({layer:_params.layer,style: inner_style, points: el.coordinates(left_points)});
+	
+	var right_points = [
+		        {x:((params.container.width/2)+inner_offset),y:(box_points[0].y+inner_offset)}, 					
+		        {x:(params.container.width-(inner_offset*2)),y:(box_points[1].y+inner_offset)},
+		        {x:(params.container.width-(inner_offset*2)),y:(box_points[2].y-inner_offset)},
+		        {x:((params.container.width/2)+inner_offset),y:(box_points[2].y-inner_offset)},
+		        {x:((params.container.width/2)+inner_offset),y:(box_points[0].y+inner_offset)}
+					 ];
+	
+  var right_box = el.polyline({layer:_params.layer,style: inner_style, points: el.coordinates(right_points)});
+	
+	return null;
+}
+////////////////////////////////////////////////////////////////////////////////
 define({
 slide: function (params) { return slide(params); },
 defs: function (params) { return defs(params); },
@@ -628,6 +717,7 @@ pattern: function (params) { return pattern (params); },
 animate: function (params) { return animate (params); },
 animateTransform: function (params) { return animateTransform (params); },
 set: function (params) { return set (params); },
-animateMotion: function (params) { return animateMotion (params); }		
+animateMotion: function (params) { return animateMotion (params); },
+animateMotionFrame: function (params) { return animateMotionFrame (params); }			
 // EOF
 });
