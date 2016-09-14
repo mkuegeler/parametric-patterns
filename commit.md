@@ -155,3 +155,10 @@ git add *
 git commit -a -m "animateMotion Frame added." 
 git push origin master
 ```
+
+## 14.09.2016
+```
+git add * 
+git commit -a -m "animateMotion Frame: Layout." 
+git push origin master
+```

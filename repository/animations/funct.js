@@ -634,7 +634,7 @@ function animateMotionFrame(params) {
 	var start_button_offset = 25;
 	var start_button = el.circle({layer:_params.layer, r:12, transform:"translate("+(params.container.width/2)+","+(params.container.height+start_button_offset)+")",style: "fill:#ffffff;stroke:none;"}); 
 	
-	var box_style = "fill:none;stroke:#ffffff;stroke-width:1.5px;";
+	var box_style = "fill:none;stroke:#ffffff;stroke-width:1.5px;visibility:visible";
 	
 	// var box = el.rect({layer:_params.layer, style:box_style, height:params.container.height, width:params.container.width});
 	
@@ -673,7 +673,7 @@ function animateMotionFrame(params) {
 	var horizontal_mid_line = el.polyline({layer:_params.layer,style: box_style, points: el.coordinates(horizontal_mid_points)});
 	
 	// Level 3: Left / Right side. Depends on box_frame
-	var inner_style = "fill:none;stroke:#ff0000;stroke-width:2px;";
+	var inner_style = "fill:none;stroke:#ff0000;stroke-width:3px;";
 	
 	var inner_offset = offset;
 	var left_points = [
@@ -695,6 +695,31 @@ function animateMotionFrame(params) {
 					 ];
 	
   var right_box = el.polyline({layer:_params.layer,style: inner_style, points: el.coordinates(right_points)});
+	
+	
+	// level 4: Containers
+	var container_style = "fill:none;stroke:#ffff00;stroke-width:2px;";
+	
+	var container_inner_offset = (inner_offset+5);
+	var left_container_points_A = [
+		        {x:(left_points[0].x + (container_inner_offset/2)), y:(left_points[0].y + (container_inner_offset/2))}, // 0
+		        {x:(left_points[1].x - (container_inner_offset/2)), y:(left_points[1].y + (container_inner_offset/2))}, // 1
+		        {x:(left_points[2].x - (container_inner_offset/2)), y:( ((left_points[2].y/2)+inner_offset) - (container_inner_offset/2) ) }, // 2
+		        {x:(left_points[0].x + (container_inner_offset/2)), y:( ((left_points[2].y/2)+inner_offset) - (container_inner_offset/2) ) }, // 3
+		        {x:(left_points[0].x + (container_inner_offset/2)), y:(left_points[0].y + (container_inner_offset/2))}	// 4
+					 ];
+	
+	var left_container_A = el.polyline({layer:_params.layer,style: container_style, points: el.coordinates(left_container_points_A)});
+	
+	var left_container_points_B = [
+		        {x: left_container_points_A[0].x, y:(left_container_points_A[2].y+container_inner_offset)}, // 0
+		        {x: left_container_points_A[1].x, y:(left_container_points_A[2].y+container_inner_offset)}, // 1
+		        {x: left_container_points_A[2].x, y:((left_container_points_A[2].y*2)- (container_inner_offset+(container_inner_offset/2)))}, // 2
+		        {x: left_container_points_A[3].x, y:((left_container_points_A[2].y*2)- (container_inner_offset + (container_inner_offset/2)   ))}, // 3
+		        {x: left_container_points_A[4].x, y:(left_container_points_A[2].y+container_inner_offset)}  // 4
+					 ];
+			
+	var left_container_B = el.polyline({layer:_params.layer,style: container_style, points: el.coordinates(left_container_points_B)});
 	
 	return null;
 }
