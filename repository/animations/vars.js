@@ -74,7 +74,7 @@ variants: [
   },
   ////////////////////////////////////////////////////////////////////////////////
   animateMotionFrame: {
-    offset: 45,
+    offset: 25,
     repeatCount: 1,
     dur: 3
    

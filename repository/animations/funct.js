@@ -26,7 +26,60 @@ function position (params) {
 // 	params.forEach(function(p) { points += " "+p.x+","+p.y+" ";	});	
 //   return points;
 // }
+////////////////////////////////////////////////////////////////////////////////
+// returns center point of a rectangle
+function getCenter (w,h) {
+	return {x:(w/2),y:(h/2)};
+}
+////////////////////////////////////////////////////////////////////////////////
+// creates a rectangle based on a center point
+// factor = offset factor
+// return points array. 
+// return [{x:0,y:0},{x:0,y:0}]
+function frame (cx,cy,w,h,f) {
+	
+w = (w-f.w);
+h = (h-f.h);
 
+	return [
+		        {x:(cx-(w/2)),y:(cy-(h/2))}, 					
+		        {x:(cx+(w/2)),y:(cy-(h/2))}, 
+		        {x:(cx+(w/2)),y:(cy+(h/2))},
+		        {x:(cx-(w/2)),y:(cy+(h/2))},
+		        {x:(cx-(w/2)),y:(cy-(h/2))}
+	];
+
+}
+////////////////////////////////////////////////////////////////////////////////
+// get interior center points of a rectangle
+// return [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}]
+
+function getCenterList (cx,cy,w,h,f) {
+	
+w = (w-f.w);
+h = (h-f.h);
+
+	return [
+		        {x:(cx-(w/4)),y:(cy-(h/4))}, 					
+		        {x:(cx+(w/4)),y:(cy-(h/4))}, 
+		        {x:(cx+(w/4)),y:(cy+(h/4))},
+		        {x:(cx-(w/4)),y:(cy+(h/4))},
+		        {x:(cx-(w/4)),y:(cy-(h/4))}
+		       
+	];
+	
+}
+////////////////////////////////////////////////////////////////////////////////
+// create path for animations
+// requires point array: [{x:0,y:0},{x:0,y:0}]
+// returns a string of format: "M0 0 L10 10"
+function getPath (params) {
+	
+	var points = "M"+params[0].x+" "+params[0].y;	 	
+	params.shift();	
+	params.forEach(function(p) { points += " L"+p.x+" "+p.y+" ";	});	
+  return points;
+}
 ////////////////////////////////////////////////////////////////////////////////
 // main functions
 function slide (params) {
@@ -636,90 +689,85 @@ function animateMotionFrame(params) {
 	
 	var box_style = "fill:none;stroke:#ffffff;stroke-width:1.5px;visibility:visible";
 	
-	// var box = el.rect({layer:_params.layer, style:box_style, height:params.container.height, width:params.container.width});
-	
 	// Level 1: Boundary Box
-	var offset = _params.offset;
-	var box_width = (params.container.width-offset);
-	var box_height = (params.container.height-offset);
+	var offset = {w:_params.offset,h:_params.offset};
+	var width = params.container.width;
+	var height = params.container.height;
 	
-	var center = el.circle({layer:_params.layer,style: box_style, r:offset,cx:(params.container.width/2),cy:(params.container.height/2)});
+	var m = getCenter(params.container.width,params.container.height);
 	
-	var box_points = [
-		        {x:offset,y:offset}, 					
-		        {x:box_width,y:offset}, 
-		        {x:box_width,y:box_height},
-		        {x:offset,y:box_height},
-		        {x:offset,y:offset}
-					 ];
+	// var center = el.circle({layer:_params.layer,style: box_style, r:offset.w,cx:m.x,cy:m.y});
 	
-	// var box_transform = "translate("+(offset/2)+","+(offset/2)+")";
-	var box_frame = el.polyline({layer:_params.layer,style: box_style, points: el.coordinates(box_points)});
+	var box_frame = el.polyline({layer:_params.layer,style: box_style, points: el.coordinates(frame(m.x,m.y,width,height,offset))});
 	
-	// Level 2: Grid
+	var centerList = getCenterList(m.x,m.y,width,height,offset);
 	
-	var vertical_mid_points = [
-		       {x:(params.container.width/2),y:offset}, 				
-		       {x:(params.container.width/2),y:box_height}
-					 ];
+	var frame_style = "fill:none;stroke:#ff0000;stroke-width:1.5px;visibility:visible";
 	
-	var vertical_mid_line = el.polyline({layer:_params.layer,style: box_style, points: el.coordinates(vertical_mid_points)});
+	var offset_1 = {w:100,h:100};
 	
-	var horizontal_mid_points = [
-		       {x:offset,y:(params.container.height/2)}, 				
-		       {x:box_width,y:(params.container.height/2)}
-					 ];
+	var box_frame_1 = el.polyline({layer:_params.layer,style: frame_style, points: el.coordinates(frame(centerList[0].x,centerList[0].y,(width/2),(height/2),offset_1))});
 	
-	var horizontal_mid_line = el.polyline({layer:_params.layer,style: box_style, points: el.coordinates(horizontal_mid_points)});
+	var box_frame_2 = el.polyline({layer:_params.layer,style: frame_style, points: el.coordinates(frame(centerList[1].x,centerList[1].y,(width/2),(height/2),offset_1))});
 	
-	// Level 3: Left / Right side. Depends on box_frame
-	var inner_style = "fill:none;stroke:#ff0000;stroke-width:3px;";
+	var box_frame_3 = el.polyline({layer:_params.layer,style: frame_style, points: el.coordinates(frame(centerList[2].x,centerList[2].y,(width/2),(height/2),offset_1))});
 	
-	var inner_offset = offset;
-	var left_points = [
-		        {x:(box_points[0].x+inner_offset),y:(box_points[0].y+inner_offset)}, 					
-		        {x:((params.container.width/2)-inner_offset),y:(box_points[1].y+inner_offset)},
-		        {x:((params.container.width/2)-inner_offset),y:(box_points[2].y-inner_offset)},
-		        {x:(box_points[0].x+inner_offset),y:(box_points[2].y-inner_offset)},
-		        {x:(box_points[0].x+inner_offset),y:(box_points[0].y+inner_offset)}
-					 ];
+	var box_frame_4 = el.polyline({layer:_params.layer,style: frame_style, points: el.coordinates(frame(centerList[3].x,centerList[3].y,(width/2),(height/2),offset_1))});
 	
-  var left_box = el.polyline({layer:_params.layer,style: inner_style, points: el.coordinates(left_points)});
+	var inner_centerList =  [
+ 		       {x:centerList[0].x,y:(height/2)}, 				
+ 		       {x:(width/2),y:centerList[1].y},
+		       {x:centerList[1].x,y:(height/2)},
+		       {x:(width/2),y:centerList[2].y} 		
+ 			];
 	
-	var right_points = [
-		        {x:((params.container.width/2)+inner_offset),y:(box_points[0].y+inner_offset)}, 					
-		        {x:(params.container.width-(inner_offset*2)),y:(box_points[1].y+inner_offset)},
-		        {x:(params.container.width-(inner_offset*2)),y:(box_points[2].y-inner_offset)},
-		        {x:((params.container.width/2)+inner_offset),y:(box_points[2].y-inner_offset)},
-		        {x:((params.container.width/2)+inner_offset),y:(box_points[0].y+inner_offset)}
-					 ];
+	var side_style = "fill:none;stroke:#ff00ff;stroke-width:1.5px;visibility:visible";
 	
-  var right_box = el.polyline({layer:_params.layer,style: inner_style, points: el.coordinates(right_points)});
+	var offset_2 = {w:50,h:50};
+	
+	var left_frame = el.polyline({layer:_params.layer,style: side_style, points: el.coordinates(frame(inner_centerList[0].x,inner_centerList[0].y,(width/2),height, offset_2))});
+	
+	var right_frame = el.polyline({layer:_params.layer,style: side_style, points: el.coordinates(frame(inner_centerList[2].x,inner_centerList[2].y,(width/2),height, offset_2))});
 	
 	
-	// level 4: Containers
-	var container_style = "fill:none;stroke:#ffff00;stroke-width:2px;";
+	var h_style = "fill:none;stroke:#cccccc;stroke-width:1px;visibility:visible;stroke-dasharray:5,5";
 	
-	var container_inner_offset = (inner_offset+5);
-	var left_container_points_A = [
-		        {x:(left_points[0].x + (container_inner_offset/2)), y:(left_points[0].y + (container_inner_offset/2))}, // 0
-		        {x:(left_points[1].x - (container_inner_offset/2)), y:(left_points[1].y + (container_inner_offset/2))}, // 1
-		        {x:(left_points[2].x - (container_inner_offset/2)), y:( ((left_points[2].y/2)+inner_offset) - (container_inner_offset/2) ) }, // 2
-		        {x:(left_points[0].x + (container_inner_offset/2)), y:( ((left_points[2].y/2)+inner_offset) - (container_inner_offset/2) ) }, // 3
-		        {x:(left_points[0].x + (container_inner_offset/2)), y:(left_points[0].y + (container_inner_offset/2))}	// 4
-					 ];
+	var offset_3 = {w:1400,h:200};
 	
-	var left_container_A = el.polyline({layer:_params.layer,style: container_style, points: el.coordinates(left_container_points_A)});
+	var top_channel = el.polyline({layer:_params.layer,style: h_style, points: el.coordinates(frame(inner_centerList[1].x,inner_centerList[1].y,width,(height/2),offset_3))});
 	
-	var left_container_points_B = [
-		        {x: left_container_points_A[0].x, y:(left_container_points_A[2].y+container_inner_offset)}, // 0
-		        {x: left_container_points_A[1].x, y:(left_container_points_A[2].y+container_inner_offset)}, // 1
-		        {x: left_container_points_A[2].x, y:((left_container_points_A[2].y*2)- (container_inner_offset+(container_inner_offset/2)))}, // 2
-		        {x: left_container_points_A[3].x, y:((left_container_points_A[2].y*2)- (container_inner_offset + (container_inner_offset/2)   ))}, // 3
-		        {x: left_container_points_A[4].x, y:(left_container_points_A[2].y+container_inner_offset)}  // 4
-					 ];
-			
-	var left_container_B = el.polyline({layer:_params.layer,style: container_style, points: el.coordinates(left_container_points_B)});
+	var bot_channel = el.polyline({layer:_params.layer,style: h_style, points: el.coordinates(frame(inner_centerList[3].x,inner_centerList[3].y,width,(height/2),offset_3))});
+	
+	
+	var offset_4 = {w:450,h:700};
+	
+	var left_channel = el.polyline({layer:_params.layer,style: h_style, points: el.coordinates(frame(inner_centerList[0].x,inner_centerList[0].y,(width/2),height,offset_4))});
+	
+	var right_channel = el.polyline({layer:_params.layer,style: h_style, points: el.coordinates(frame(inner_centerList[2].x,inner_centerList[2].y,(width/2),height,offset_4))});
+	
+	var path = el.polyline({layer:_params.layer,style: h_style, points: el.coordinates(centerList)});
+	
+	// var path = el.path({layer:_params.layer,style: box_style, d:getPath(centerList)});
+	
+	var node = el.circle({layer:_params.layer,style: box_style, r:offset.w,cx:centerList[0].x,cy:centerList[0].y});
+	
+	var pw = (centerList[1].x-centerList[0].x);
+	var ph = (centerList[2].y-centerList[1].y);
+	
+	var p0 = "M0 0 ";
+	var p1 = "L"+pw+" 0 ";
+	var p2 = "L"+pw+" "+ph+" ";
+	var p3 = "L0 "+ph+" ";
+	var p4 = "L0 0 ";
+	
+	var animPath = p0+p1+p2+p3+p4;
+	
+	// alert(animPath);
+	
+	// getPath(centerList)
+	
+	var animateNode = el.animateMotion({layer:node.id, begin:start_button.id+".click", path:animPath, dur:10, repeatCount: 1});
+	
 	
 	return null;
 }
