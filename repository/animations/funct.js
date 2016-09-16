@@ -751,22 +751,30 @@ function animateMotionFrame(params) {
 	
 	var node = el.circle({layer:_params.layer,style: box_style, r:offset.w,cx:centerList[0].x,cy:centerList[0].y});
 	
-	var pw = (centerList[1].x-centerList[0].x);
-	var ph = (centerList[2].y-centerList[1].y);
+// 	var pw = (centerList[1].x-centerList[0].x);
+// 	var ph = (centerList[2].y-centerList[1].y);
 	
-	var p0 = "M0 0 ";
-	var p1 = "L"+pw+" 0 ";
-	var p2 = "L"+pw+" "+ph+" ";
-	var p3 = "L0 "+ph+" ";
-	var p4 = "L0 0 ";
+// 	var p0 = "M0 0 ";
+// 	var p1 = "L"+pw+" 0 ";
+// 	var p2 = "L"+pw+" "+ph+" ";
+// 	var p3 = "L0 "+ph+" ";
+// 	var p4 = "L0 0 ";
 	
-	var animPath = p0+p1+p2+p3+p4;
+	// var animPath = p0+p1+p2+p3+p4;
+	
+	var animPath =  [
+ 		       {x:0,y:0}, 				
+ 		       {x:(centerList[1].x-centerList[0].x),y:0},
+		       {x:(centerList[1].x-centerList[0].x),y:(centerList[2].y-centerList[1].y)},
+		       {x:0,y:(centerList[2].y-centerList[1].y)},
+		       {x:0,y:0}
+ 			];
 	
 	// alert(animPath);
 	
 	// getPath(centerList)
 	
-	var animateNode = el.animateMotion({layer:node.id, begin:start_button.id+".click", path:animPath, dur:10, repeatCount: 1});
+	var animateNode = el.animateMotion({layer:node.id, begin:start_button.id+".click", path:getPath(animPath), dur:10, repeatCount: 1});
 	
 	
 	return null;

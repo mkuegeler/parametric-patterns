@@ -169,3 +169,10 @@ git add *
 git commit -a -m "animateMotion: frame function added." 
 git push origin master
 ```
+
+## 16.09.2016
+```
+git add * 
+git commit -a -m "function abstractGrid in svg.js added." 
+git push origin master
+```
