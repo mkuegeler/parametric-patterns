@@ -203,14 +203,16 @@ medigeist.prototype.coordinates = function(params) {
 // support function: 
 // Create abstract grid
 // params: x,y,height,width,AmountX,AmountY
+// example: params = {x:0,y:0,height:300,width:150,height:100,10,10};
 // returns an array of hash arrays for each horizontal an vertical line of the grid
 // example: [{x1:0,y1:0,x2:0,y2:100}, {x1:0,y1:0,x2:100,y2:100}]
-
+// start point: center of grid
 ////////////////////////////////////////////////////////////////////////////////
-function abstractGrid (params) {
 
-	var x = params.x;
-	var y = params.y;
+medigeist.prototype.abstractGrid = function(params) {
+
+	var x = (params.x-(params.width/2));
+	var y = (params.y-(params.height/2));
 	var height = params.height;
 	var width = params.width;
 	var AmountX = params.AmountX;
@@ -223,12 +225,10 @@ function abstractGrid (params) {
 	var y2;
 	var pm = 0;
 	var all = 0;
-	var offset = 0;
-	var border = 0;
 
 	var grid = [];
 
-  for (i=0;i <= (AmountX) ;i++) {
+  for (i=1;i < (AmountX) ;i++) {
 
 	        pm = ((width/AmountX)*i);
 	        x1 = (x+pm);
@@ -242,7 +242,7 @@ function abstractGrid (params) {
 
    }
 
-	 for (j=0;j <= (AmountY) ;j++) {
+	 for (j=1;j < (AmountY) ;j++) {
 
          pm = ((height/AmountY)*j);
 				 x1 = x;

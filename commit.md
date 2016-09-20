@@ -176,3 +176,10 @@ git add *
 git commit -a -m "function abstractGrid in svg.js added." 
 git push origin master
 ```
+
+## 20.09.2016
+```
+git add * 
+git commit -a -m "function abstractGrid in funct.js applied." 
+git push origin master
+```

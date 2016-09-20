@@ -81,6 +81,8 @@ function getPath (params) {
   return points;
 }
 ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // main functions
 function slide (params) {
 
@@ -751,17 +753,6 @@ function animateMotionFrame(params) {
 	
 	var node = el.circle({layer:_params.layer,style: box_style, r:offset.w,cx:centerList[0].x,cy:centerList[0].y});
 	
-// 	var pw = (centerList[1].x-centerList[0].x);
-// 	var ph = (centerList[2].y-centerList[1].y);
-	
-// 	var p0 = "M0 0 ";
-// 	var p1 = "L"+pw+" 0 ";
-// 	var p2 = "L"+pw+" "+ph+" ";
-// 	var p3 = "L0 "+ph+" ";
-// 	var p4 = "L0 0 ";
-	
-	// var animPath = p0+p1+p2+p3+p4;
-	
 	var animPath =  [
  		       {x:0,y:0}, 				
  		       {x:(centerList[1].x-centerList[0].x),y:0},
@@ -770,12 +761,22 @@ function animateMotionFrame(params) {
 		       {x:0,y:0}
  			];
 	
-	// alert(animPath);
-	
-	// getPath(centerList)
-	
 	var animateNode = el.animateMotion({layer:node.id, begin:start_button.id+".click", path:getPath(animPath), dur:10, repeatCount: 1});
 	
+	var grid_style = "stroke:#00ff00;stroke-width:0.5px";
+	
+	var grid = [{x:centerList[0].x,y:centerList[0].y,height:((height/2)-offset_1.h),width:((width/2)-offset_1.w),AmountX:10,AmountY:10},
+						  {x:centerList[1].x,y:centerList[1].y,height:((height/2)-offset_1.h),width:((width/2)-offset_1.w),AmountX:10,AmountY:10},
+							{x:centerList[2].x,y:centerList[2].y,height:((height/2)-offset_1.h),width:((width/2)-offset_1.w),AmountX:10,AmountY:10},
+							{x:centerList[3].x,y:centerList[3].y,height:((height/2)-offset_1.h),width:((width/2)-offset_1.w),AmountX:10,AmountY:10}
+						 ];
+	
+	grid.forEach(function(g) { 													 
+		for (var i=0; i<el.abstractGrid(g).length;i++) {       
+        el.line({layer: _params.layer, x1 : el.abstractGrid(g)[i].x1, y1: el.abstractGrid(g)[i].y1, x2: el.abstractGrid(g)[i].x2, y2:el.abstractGrid(g)[i].y2, style: grid_style});
+	}							 
+	});	
+
 	
 	return null;
 }
