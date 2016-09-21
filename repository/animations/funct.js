@@ -708,13 +708,17 @@ function animateMotionFrame(params) {
 	
 	var offset_1 = {w:100,h:100};
 	
-	var box_frame_1 = el.polyline({layer:_params.layer,style: frame_style, points: el.coordinates(frame(centerList[0].x,centerList[0].y,(width/2),(height/2),offset_1))});
+	var frame_1 = frame(centerList[0].x,centerList[0].y,(width/2),(height/2),offset_1);	
+	var box_frame_1 = el.polyline({layer:_params.layer,style: frame_style, points: el.coordinates(frame_1)});
 	
-	var box_frame_2 = el.polyline({layer:_params.layer,style: frame_style, points: el.coordinates(frame(centerList[1].x,centerList[1].y,(width/2),(height/2),offset_1))});
+	var frame_2 = frame(centerList[1].x,centerList[1].y,(width/2),(height/2),offset_1);	
+	var box_frame_2 = el.polyline({layer:_params.layer,style: frame_style, points: el.coordinates(frame_2)});
 	
-	var box_frame_3 = el.polyline({layer:_params.layer,style: frame_style, points: el.coordinates(frame(centerList[2].x,centerList[2].y,(width/2),(height/2),offset_1))});
+	var frame_3 = frame(centerList[2].x,centerList[2].y,(width/2),(height/2),offset_1);	
+	var box_frame_3 = el.polyline({layer:_params.layer,style: frame_style, points: el.coordinates(frame_3)});
 	
-	var box_frame_4 = el.polyline({layer:_params.layer,style: frame_style, points: el.coordinates(frame(centerList[3].x,centerList[3].y,(width/2),(height/2),offset_1))});
+	var frame_4 = frame(centerList[3].x,centerList[3].y,(width/2),(height/2),offset_1);
+	var box_frame_4 = el.polyline({layer:_params.layer,style: frame_style, points: el.coordinates(frame_4)});
 	
 	var inner_centerList =  [
  		       {x:centerList[0].x,y:(height/2)}, 				
@@ -732,22 +736,38 @@ function animateMotionFrame(params) {
 	var right_frame = el.polyline({layer:_params.layer,style: side_style, points: el.coordinates(frame(inner_centerList[2].x,inner_centerList[2].y,(width/2),height, offset_2))});
 	
 	
-	var h_style = "fill:none;stroke:#cccccc;stroke-width:1px;visibility:visible;stroke-dasharray:5,5";
+	// var h_style = "fill:none;stroke:#ffffff;stroke-width:1px;visibility:visible";
 	
-	var offset_3 = {w:1400,h:200};
+	var radialGradient_a = el.radialGradient();	
+	     el.stop({layer:radialGradient_a.id, offset:"5%", color: "#ffffcc", opacity:"0.5"});
+       el.stop({layer:radialGradient_a.id, offset:"85%", color: "#00ff00", opacity:"0.5"}); 
 	
-	var top_channel = el.polyline({layer:_params.layer,style: h_style, points: el.coordinates(frame(inner_centerList[1].x,inner_centerList[1].y,width,(height/2),offset_3))});
+	var h_style = "fill:url(#"+radialGradient_a.id+")";
 	
-	var bot_channel = el.polyline({layer:_params.layer,style: h_style, points: el.coordinates(frame(inner_centerList[3].x,inner_centerList[3].y,width,(height/2),offset_3))});
+	var vw = (frame_2[0].x-frame_1[1].x);
+	
+	var vh = (frame_1[2].y-frame_1[0].y);
+	
+	var offset_3 = {w:2,h:(vh/2)};
+	
+  var top_channel = el.polyline({layer:_params.layer,style: h_style, points: el.coordinates(frame(inner_centerList[1].x,inner_centerList[1].y,vw,vh,offset_3))});	
+
+	var bot_channel = el.polyline({layer:_params.layer,style: h_style, points: el.coordinates(frame(inner_centerList[3].x,inner_centerList[3].y,vw,vh,offset_3))});
+	
+		
+	var hh = (frame_2[0].x-frame_1[1].x);
+	
+	var ww = (frame_1[1].x-frame_1[0].x);
+	
+	var offset_4 = {w:(ww/2),h:2};
+	
+	var left_channel = el.polyline({layer:_params.layer,style: h_style, points: el.coordinates(frame(inner_centerList[0].x,inner_centerList[0].y,ww,hh,offset_4))});
+
+	var right_channel = el.polyline({layer:_params.layer,style: h_style, points: el.coordinates(frame(inner_centerList[2].x,inner_centerList[2].y,ww,hh,offset_4))});
 	
 	
-	var offset_4 = {w:450,h:700};
-	
-	var left_channel = el.polyline({layer:_params.layer,style: h_style, points: el.coordinates(frame(inner_centerList[0].x,inner_centerList[0].y,(width/2),height,offset_4))});
-	
-	var right_channel = el.polyline({layer:_params.layer,style: h_style, points: el.coordinates(frame(inner_centerList[2].x,inner_centerList[2].y,(width/2),height,offset_4))});
-	
-	var path = el.polyline({layer:_params.layer,style: h_style, points: el.coordinates(centerList)});
+	var p_style = "fill:none;stroke:#ffffff;stroke-width:1px;visibility:visible";
+	var path = el.polyline({layer:_params.layer,style: p_style, points: el.coordinates(centerList)});
 	
 	// var path = el.path({layer:_params.layer,style: box_style, d:getPath(centerList)});
 	
