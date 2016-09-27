@@ -76,9 +76,10 @@ variants: [
   animateMotionFrame: {
     offset: 25,
     repeatCount: 1,
-    dur: 3
-   
-   
+    dur: 3,
+    AmountX: 4,
+    AmountY: 4
+ 
   }  
 } /// var2 end    
 ]

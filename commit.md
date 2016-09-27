@@ -190,3 +190,10 @@ git add *
 git commit -a -m "element dependencies: channels." 
 git push origin master
 ```
+
+## 27.09.2016
+```
+git add * 
+git commit -a -m "function abstractNodes added." 
+git push origin master
+```

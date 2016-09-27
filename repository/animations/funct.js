@@ -671,6 +671,15 @@ function animateMotion(params) {
 	return null;
 }
 ////////////////////////////////////////////////////////////////////////////////
+// Notes and description:
+// Parametric Message Flow Animation
+// Parameters: Left and right tenants (represented by left and right boxes)
+// Each tenant consists of a sender and a receiver box
+// The sender and the receiver box inhabits a grid which defines the amount of nodes (items) to be shared among the tenants.
+// the sender and receiver boxes are connected by channels. The width of each channel defines the number of nodes which can be exchanged simultanously between boxes
+// the exchange of nodes runs according particular rules
+// defining the key parameter: grid
+
 function animateMotionFrame(params) {	
   
   var el = params.animateMotionFrame.el;
@@ -695,6 +704,10 @@ function animateMotionFrame(params) {
 	var offset = {w:_params.offset,h:_params.offset};
 	var width = params.container.width;
 	var height = params.container.height;
+	
+	// defined in vars.js
+	var AmountX = _params.AmountX;
+	var AmountY = _params.AmountY;
 	
 	var m = getCenter(params.container.width,params.container.height);
 	
@@ -785,16 +798,21 @@ function animateMotionFrame(params) {
 	
 	var grid_style = "stroke:#00ff00;stroke-width:0.5px";
 	
-	var grid = [{x:centerList[0].x,y:centerList[0].y,height:((height/2)-offset_1.h),width:((width/2)-offset_1.w),AmountX:10,AmountY:10},
-						  {x:centerList[1].x,y:centerList[1].y,height:((height/2)-offset_1.h),width:((width/2)-offset_1.w),AmountX:10,AmountY:10},
-							{x:centerList[2].x,y:centerList[2].y,height:((height/2)-offset_1.h),width:((width/2)-offset_1.w),AmountX:10,AmountY:10},
-							{x:centerList[3].x,y:centerList[3].y,height:((height/2)-offset_1.h),width:((width/2)-offset_1.w),AmountX:10,AmountY:10}
+	var grid = [{x:centerList[0].x,y:centerList[0].y,height:((height/2)-offset_1.h),width:((width/2)-offset_1.w),AmountX:AmountX,AmountY:AmountY},
+						  {x:centerList[1].x,y:centerList[1].y,height:((height/2)-offset_1.h),width:((width/2)-offset_1.w),AmountX:AmountX,AmountY:AmountY},
+							{x:centerList[2].x,y:centerList[2].y,height:((height/2)-offset_1.h),width:((width/2)-offset_1.w),AmountX:AmountX,AmountY:AmountY},
+							{x:centerList[3].x,y:centerList[3].y,height:((height/2)-offset_1.h),width:((width/2)-offset_1.w),AmountX:AmountX,AmountY:AmountY}
 						 ];
 	
 	grid.forEach(function(g) { 													 
 		for (var i=0; i<el.abstractGrid(g).length;i++) {       
         el.line({layer: _params.layer, x1 : el.abstractGrid(g)[i].x1, y1: el.abstractGrid(g)[i].y1, x2: el.abstractGrid(g)[i].x2, y2:el.abstractGrid(g)[i].y2, style: grid_style});
-	}							 
+	  }	
+		
+		// params = {layer: gridNodes.id, r:r, cx : AbstractGridNodes[i].x1, cy: AbstractGridNodes[i].y1, style: style};
+		for (var j=0; j<el.abstractNodes(g).length;j++) {       
+        el.circle({layer: _params.layer, r:(offset.w/2), cx : el.abstractNodes(g)[j].x1, cy: el.abstractNodes(g)[j].y1, style:box_style});
+	  }	
 	});	
 
 	
