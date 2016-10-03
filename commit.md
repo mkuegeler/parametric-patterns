@@ -197,3 +197,10 @@ git add *
 git commit -a -m "function abstractNodes added." 
 git push origin master
 ```
+
+## 03.10.2016
+```
+git add * 
+git commit -a -m "function abstractPanels added." 
+git push origin master
+```

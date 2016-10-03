@@ -8,12 +8,12 @@ variants: [
 
 {  /// var1 start
   slide: {
-    name: "animateMotion element",
+    name: "animateMotion Frame element 1",
     description: "Description of element",
     width:"100%",
     height:"100%",
     viewBox: "0 0 1600 900",
-    style: "background-color:#465E8A;",
+    style: "background-color:#EBB249;",
     scale:2,
     boxw: 1600,
     boxh: 900
@@ -31,23 +31,28 @@ variants: [
     y:0,
     rx:0,
     ry:0,
-    offset:25
+    offset:0
   },
-  ////////////////////////////////////////////////////////////////////////////////
-  animateMotion: {
-    style: "fill:#e8e8e8;stroke:#999999;stroke-width:4px;",
-    path_style: "fill:none;stroke:#999999;stroke-width:4px;",
-    path: "M 0,0 A300,300 0 100,100 300,0",
+ 
+  animateMotionFrame1: {
+    offset: 25,
     repeatCount: 1,
     dur: 3,
-    width: -600,
-    height: 100
-   
+    AmountX: 4,
+    AmountY: 4,
+    box_style: "fill:none;stroke:#ffffff;stroke-width:1.5px;visibility:visible",
+    start_button_offset:25,
+    start_button_style: "fill:#ffffff;stroke:none;",
+    start_button_radius: 12,
+    grid_style:"stroke:#000000;stroke-width:1px",
+    panel_offset:25,
+	  panel_style: "fill:#00ffcc;stroke:#ff0000;stroke-width:2px"
   }  
 }, /// var1 end
+ ////////////////////////////////////////////////////////////////////////////////  
 {  /// var2 start
   slide: {
-    name: "animateMotion Frame element",
+    name: "animateMotion Frame element 2",
     description: "Description of element",
     width:"100%",
     height:"100%",
@@ -72,8 +77,8 @@ variants: [
     ry:0,
     offset:0
   },
-  ////////////////////////////////////////////////////////////////////////////////
-  animateMotionFrame: {
+  
+  animateMotionFrame2: {
     offset: 25,
     repeatCount: 1,
     dur: 3,
@@ -81,7 +86,8 @@ variants: [
     AmountY: 4
  
   }  
-} /// var2 end    
+} /// var2 end
+////////////////////////////////////////////////////////////////////////////////  
 ]
 // EOF
 });
