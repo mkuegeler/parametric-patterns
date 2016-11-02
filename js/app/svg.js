@@ -352,6 +352,22 @@ return grid;
 
 }
 ///////////////////////////////////////////////////////////////////////////////
+// Composite Element Grid (see abstractGrid)
+medigeist.prototype.grid = function(params) { 
+	
+	// offset = {w:w,h:h};
+	// params = {layer:layer,x:x,y:y,height:height,width:width,offset:offset,AmountX:AmountX,AmountY:AmountY,style:style};
+		
+	var container = this.g({layer:params.layer});
+	
+	var g = {x:params.x,y:params.y,height:params.height, width:params.width, AmountX:params.AmountX,AmountY:params.AmountY};
+	
+	for (var i=0; i<this.abstractGrid(g).length;i++) {       
+        this.line({layer: container.id, x1 : this.abstractGrid(g)[i].x1, y1: this.abstractGrid(g)[i].y1, x2: this.abstractGrid(g)[i].x2, y2:this.abstractGrid(g)[i].y2, style: params.style});
+	  }	
+	return container.id;
+}
+///////////////////////////////////////////////////////////////////////////////
 // Elements: Start
 ///////////////////////////////////////////////////////////////////////////////
 // The svg root element

@@ -6,18 +6,20 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A JavaScript library to create parametric patterns on the web.">
+<meta name="description" content="A JavaScript library to create parametric animations on the web.">
 <meta name="keywords" content="HTML, CSS, JS, JavaScript, SVG, Parametric Animations">
 <meta name="author" content="Michael Kuegeler">
 
 <title>Medigeist</title>
 
 <!-- Bootstrap core CSS -->
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"> -->
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
 <!-- Documentation extras -->
-<link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+<!--  <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet"> -->
+<link href="../../css/docs.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="css/site.css" rel="stylesheet">
+<link href="../../css/site.css" rel="stylesheet">
 <!-- Favicons -->
 <!-- <link rel="apple-touch-icon-precomposed" href="http://getbootstrap.com/apple-touch-icon-precomposed.png">
 <link rel="icon" href="http://getbootstrap.com/favicon.ico"> -->
@@ -47,8 +49,7 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">HOME</a></li>
-        <li><a href="about.html">ABOUT</a></li>
-				<li><a href="#">REPOSITORY</a></li>
+        <li><a href="/repo.html">REPOSITORY</a></li>
         <!-- <li><a href="sample.html">SAMPLE</a></li> -->
         <li><a href="https://github.com/mkuegeler/parametric-patterns">GITHUB</a></li>
       </ul>
@@ -61,34 +62,15 @@
 <div class="bs-docs-header" id="content">
   <div class="container">
     <div id="table_of_content">
-       <div class="page-header"><h3>Repository</h3></div> 
-           <ul id="hb_placeholder_01" class="list-group">
-               <li class="list-group-item"><a href="repository/overview/index.html">Generic SVG Elements: Overview</a>
-				   <p class="list-description">Simple SVG patterns and animations.</p>
-			   </li>
-						 <li class="list-group-item"><a href="repository/patterns/index.html">Patterns and Structures</a>
-				   <p class="list-description">Simple SVG patterns and animations.</p>
-			   </li>
-				</li>
-						 <li class="list-group-item"><a href="repository/animations/index.html">Animations</a>
-				   <p class="list-description">Simple SVG patterns and animations.</p>
-			   </li>
-			   <li class="list-group-item"><a href="repository/frames/index.html">Frames</a>
-				   <p class="list-description">Generic frames and grid systems.</p>
-			   </li>
-			   <!-- <li class="list-group-item"><a href="repository/1/index.html">Generic Patterns 1</a>
-				   <p class="list-description">Simple SVG patterns and animations.</p>
-			   </li>
-			   <li class="list-group-item"><a href="repository/2/index.html">Generic Patterns 2</a>
-				   <p class="list-description">Simple SVG patterns and animations.</p>
-			   </li> -->
-		   </ul>
+       <div class="page-header"><h3>Content</h3></div>
+           <ul id="hb_placeholder_01" class="list-group"></ul>
        </div>
     </div>
 </div>
 <!-- svg area -->
 <div id="hb_placeholder_02" class="container"></div>
-<!-- svg area -->	
+<!-- svg area -->
+
 <!-- Page content  ================================================== -->
 
 <!-- Footer ========================================================= -->
@@ -104,15 +86,44 @@
 <!-- JavaScript Recources ========================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
-<script type="text/javascript" src="lib/handlebars-v3.0.0.js"></script>
+<script type="text/javascript" src="../../lib/handlebars-v3.0.0.js"></script>
 
 <!--  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
-<script src="lib/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="../../lib/jquery.min.js"></script>
+<!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> -->
+<script src="../../lib/bootstrap.min.js"></script>
 <!-- <script src="http://getbootstrap.com/assets/js/docs.min.js"></script> -->
 
+<!-- require.js -->
+<!--  <script data-main="js/main.js" src="http://requirejs.org/docs/release/2.1.15/minified/require.js"></script> -->
+<script data-main="main.js" src="../../lib/require.js"></script>
+
+<!-- <script src="http://sindresorhus.com/screenfull.js/src/screenfull.js"></script> -->
+<script src="../../lib/screenfull.min.js"></script>
+<script src="../../js/conf/scheme.js"></script>
+<script id="hb_placeholder_03"></script>
 
 <!-- JavaScript Recources ========================================= -->
+
+<script id="set_hbs" type="text/javascript">
+
+function hbs_templates (data,amount) {
+
+var source, template;
+
+for (i=1; i<=amount; i++) {
+source = document.getElementById("siteTemplate_0"+i).innerHTML;
+template = Handlebars.compile(source);
+document.getElementById("hb_placeholder_0"+i).innerHTML = template(data);
+}
+
+}
+
+</script>
+<!-- Handlebars Templates ========================================== -->
+<span id="data_placeholder"></span>
+<span id="tmpl_placeholder"></span>
+<!-- Handlebars Templates ========================================== -->
 
 </body>
 </html>

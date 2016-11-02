@@ -38,8 +38,8 @@ variants: [
     offset: 25,
     repeatCount: 1,
     dur: 3,
-    AmountX: 4,
-    AmountY: 4,
+    AmountX: 2,
+    AmountY: 2,
     box_style: "fill:none;stroke:#ffffff;stroke-width:1.5px;visibility:visible",
     start_button_offset:25,
     start_button_style: "fill:#ffffff;stroke:none;",
@@ -87,7 +87,7 @@ variants: [
  
   }  
 } /// var2 end
-////////////////////////////////////////////////////////////////////////////////  
+////////////////////////////////////////////////////////////////////////////////  	
 ]
 // EOF
 });
