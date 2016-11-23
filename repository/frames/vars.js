@@ -38,7 +38,7 @@ variants: [
     offset: 25,
     AmountX: 2,
     AmountY: 2,
-    box_style: "fill:none;stroke:#ffffff;stroke-width:1.5px;visibility:visible",
+    box_style: "fill:none;stroke:#ffffff;stroke-width:3px;visibility:visible",
     grid_style:"stroke:#000000;stroke-width:1px",
     panel_offset:25,
 	  panel_style: "fill:#ffffcc;stroke:#ff0000;stroke-width:2px"

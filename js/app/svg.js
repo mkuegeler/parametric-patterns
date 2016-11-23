@@ -368,6 +368,24 @@ medigeist.prototype.grid = function(params) {
 	return container.id;
 }
 ///////////////////////////////////////////////////////////////////////////////
+// Composite Element Grid (see abstractGrid)
+medigeist.prototype.panel = function(params) { 
+	
+			
+	var container = this.g({layer:params.layer});
+	
+	var g = {x:params.x,y:params.y,height:params.height, width:params.width, AmountX:params.AmountX,AmountY:params.AmountY};
+	
+	var panel_offset = params.offset;
+	
+	// Panels
+	for (var k=0; k<this.abstractPanels(g).length;k++) { 
+		   this.rect({layer: container.id, x : (this.abstractPanels(g)[k].x1+(panel_offset/2)), y: (this.abstractPanels(g)[k].y1+(panel_offset/2)), width:((g.width/params.AmountX)-panel_offset), 
+									height:((g.height/params.AmountY)-panel_offset), style:params.style});
+	  }	
+	return container.id;
+}
+///////////////////////////////////////////////////////////////////////////////
 // Elements: Start
 ///////////////////////////////////////////////////////////////////////////////
 // The svg root element

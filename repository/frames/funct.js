@@ -191,9 +191,6 @@ function Frame1(params) {
 	
 	var defs = layer.find(function(layer) {return layer.name === "defs"; }).id;		
 	
-// 	var start_button_offset = _params.start_button_offset;
-// 	var start_button = el.circle({layer:_params.layer, r:_params.start_button_radius, transform:"translate("+(params.container.width/2)+","+(params.container.height+start_button_offset)+")",style: _params.start_button_style}); 
-	
 	var box_style = _params.box_style;
 	var grid_style = _params.grid_style;
 	
@@ -206,7 +203,7 @@ function Frame1(params) {
 	
 	var m = getCenter(width,height);
 	
-	// var center = el.circle({layer:_params.layer,style: box_style, r:offset.w,cx:m.x,cy:m.y});
+	var center = el.circle({layer:_params.layer,style: box_style, r:offset.w,cx:m.x,cy:m.y});
 	
 	var box_frame = el.polyline({layer:_params.layer,style: box_style, points: el.coordinates(frame(m.x,m.y,width,height,offset))});
 	
@@ -224,27 +221,28 @@ function Frame1(params) {
 	var panel_offset = _params.panel_offset;
 	var panel_style = _params.panel_style;
 	
-	var p = {layer:_params.layer,x:x,y:y,height:(height-offset.h),width:(width-offset.w),offset:offset,AmountX:AmountX,AmountY:AmountY,style:grid_style};
+	// var p = {layer:_params.layer,x:x,y:y,height:(height-offset.h),width:(width-offset.w),offset:offset,AmountX:AmountX,AmountY:AmountY,style:grid_style};
+	
+	var d = [
+		{layer:_params.layer,x:x,y:y,height:(height-offset.h),width:(width-offset.w),offset:offset,AmountX:AmountX,AmountY:AmountY,style:grid_style}		
+					];
+		
+	var grid = [
+		el.grid(d[0])
+	];
+	
+	var p = [
+		{layer:_params.layer,x:x,y:y,height:(height-offset.h),width:(width-offset.w),offset:panel_offset,AmountX:AmountX,AmountY:AmountY,style:panel_style}		
+					];
+		
+	var panel = [
+		el.panel(p[0])
+	];
 	
 	
-	var grid = el.grid(p);
 	
-	// Grid
-// 	for (var i=0; i<el.abstractGrid(g).length;i++) {       
-//         el.line({layer: _params.layer, x1 : el.abstractGrid(g)[i].x1, y1: el.abstractGrid(g)[i].y1, x2: el.abstractGrid(g)[i].x2, y2:el.abstractGrid(g)[i].y2, style: grid_style});
-// 	  }	
 	
-// 	// Nodes 
-// 	for (var j=0; j<el.abstractNodes(g).length;j++) {       
-//         el.circle({layer: _params.layer, r:(offset.w/2), cx : el.abstractNodes(g)[j].x1, cy: el.abstractNodes(g)[j].y1, style:box_style});		    
-// 	  }	
-	
-// 	// Panels
-// 	for (var k=0; k<el.abstractPanels(g).length;k++) { 
-// 		   el.rect({layer: _params.layer, x : (el.abstractPanels(g)[k].x1+(panel_offset/2)), y: (el.abstractPanels(g)[k].y1+(panel_offset/2)), width:((g.width/AmountX)-panel_offset), height:((g.height/AmountY)-panel_offset), style:panel_style});
-// 	  }	
-	  
-	
+		
 	return null;
 }
 ////////////////////////////////////////////////////////////////////////////////
