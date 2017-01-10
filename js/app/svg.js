@@ -385,6 +385,24 @@ medigeist.prototype.panel = function(params) {
 	  }	
 	return container.id;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Composite Element Grid (see abstractGrid)
+medigeist.prototype.node = function(params) { 
+	
+			
+	var container = this.g({layer:params.layer});
+	
+	var g = {x:params.x,y:params.y,height:params.height, width:params.width, AmountX:params.AmountX,AmountY:params.AmountY};
+	
+	var offset = {w:params.offset,h:params.offset};
+	
+	// Nodes
+	for (var j=0; j<this.abstractNodes(g).length;j++) {       
+        this.circle({layer: container.id, r:(offset.w/2), cx : this.abstractNodes(g)[j].x1, cy: this.abstractNodes(g)[j].y1, style:params.style});		    
+	  }	
+	return container.id;
+}
 ///////////////////////////////////////////////////////////////////////////////
 // Elements: Start
 ///////////////////////////////////////////////////////////////////////////////

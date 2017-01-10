@@ -218,3 +218,10 @@ git add *
 git commit -a -m "panel function in svg.js added." 
 git push origin master
 ```
+
+## 10.01.2017
+```
+git add * 
+git commit -a -m "node function in svg.js added." 
+git push origin master
+```

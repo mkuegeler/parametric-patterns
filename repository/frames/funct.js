@@ -177,16 +177,16 @@ function container (params) {
 ////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////
-function Frame1(params) {	
+function Frame(params) {	
 	
-	var el = params.Frame1.el;
-	delete params.Frame1.el;
+	var el = params.Frame.el;
+	delete params.Frame.el;
 
-  var layer = params.Frame1.layer;
-	delete params.Frame1.layer;
+  var layer = params.Frame.layer;
+	delete params.Frame.layer;
 		
 	// Essential settings
-	var _params = params.Frame1;
+	var _params = params.Frame;
 	    _params.layer = layer.find(function(layer) {return layer.name === "container"; }).id;	
 	
 	var defs = layer.find(function(layer) {return layer.name === "defs"; }).id;		
@@ -203,7 +203,7 @@ function Frame1(params) {
 	
 	var m = getCenter(width,height);
 	
-	var center = el.circle({layer:_params.layer,style: box_style, r:offset.w,cx:m.x,cy:m.y});
+	// var center = el.circle({layer:_params.layer,style: box_style, r:offset.w,cx:m.x,cy:m.y});
 	
 	var box_frame = el.polyline({layer:_params.layer,style: box_style, points: el.coordinates(frame(m.x,m.y,width,height,offset))});
 	
@@ -220,11 +220,19 @@ function Frame1(params) {
 	
 	var panel_offset = _params.panel_offset;
 	var panel_style = _params.panel_style;
-	
-	// var p = {layer:_params.layer,x:x,y:y,height:(height-offset.h),width:(width-offset.w),offset:offset,AmountX:AmountX,AmountY:AmountY,style:grid_style};
+	var node_style = _params.node_style;
 	
 	var d = [
-		{layer:_params.layer,x:x,y:y,height:(height-offset.h),width:(width-offset.w),offset:offset,AmountX:AmountX,AmountY:AmountY,style:grid_style}		
+		{layer:_params.layer,
+		 x:x,
+		 y:y,
+		 height:(height-offset.h),
+		 width:(width-offset.w),
+		 offset:offset,
+		 AmountX:AmountX,
+		 AmountY:AmountY,
+		 style:grid_style
+		}		
 					];
 		
 	var grid = [
@@ -232,14 +240,38 @@ function Frame1(params) {
 	];
 	
 	var p = [
-		{layer:_params.layer,x:x,y:y,height:(height-offset.h),width:(width-offset.w),offset:panel_offset,AmountX:AmountX,AmountY:AmountY,style:panel_style}		
+		{layer:_params.layer,
+		 x:x,
+		 y:y,
+		 height:(height-offset.h),
+		 width:(width-offset.w),
+		 offset:panel_offset,
+		 AmountX:AmountX,
+		 AmountY:AmountY,
+		 style:panel_style
+		}		
 					];
 		
 	var panel = [
 		el.panel(p[0])
 	];
 	
-	
+	var n = [
+		{layer:_params.layer,
+		 x:x,
+		 y:y,
+		 height:(height-offset.h),
+		 width:(width-offset.w),
+		 offset:panel_offset,
+		 AmountX:AmountX,
+		 AmountY:AmountY,
+		 style:node_style
+		}		
+					];
+		
+	var node = [
+		el.node(n[0])
+	];
 	
 	
 		
@@ -250,6 +282,6 @@ define({
 slide: function (params) { return slide(params); },
 defs: function (params) { return defs(params); },
 container: function (params) { return container(params); },
-Frame1: function (params) { return Frame1 (params); }
+Frame: function (params) { return Frame (params); }
 // EOF
 });
